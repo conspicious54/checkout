@@ -123,6 +123,7 @@ const CheckoutPage: React.FC<CheckoutPageProps> = () => {
                       >
                         Click here to pay in full instead
                       </a>
+                      {' '}(you can still use Klarna or AfterPay to break up the payment)
                     </p>
                   </div>
                 </div>
