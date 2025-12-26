@@ -1,9 +1,16 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import CheckoutPage from './components/CheckoutPage';
+import MainCheckoutPage from './components/MainCheckoutPage';
 
 function App() {
   return (
-    <CheckoutPage />
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<CheckoutPage />} />
+        <Route path="/main" element={<MainCheckoutPage />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
