@@ -100,6 +100,34 @@ const CheckoutPage: React.FC<CheckoutPageProps> = () => {
 
             {/* Checkout Form - Mobile Only */}
             <div className="lg:hidden">
+              {/* Credit Card Requirements Notice - Mobile */}
+              <div className="mb-6 bg-yellow-50 border-2 border-yellow-400 rounded-2xl p-6 shadow-lg">
+                <div className="flex items-start space-x-3">
+                  <div className="bg-yellow-100 p-2 rounded-lg flex-shrink-0">
+                    <CreditCard className="w-6 h-6 text-yellow-700" />
+                  </div>
+                  <div className="flex-1">
+                    <h3 className="text-lg font-bold text-yellow-900 mb-2">
+                      Credit Card Required for SplitIt
+                    </h3>
+                    <p className="text-sm text-yellow-800 leading-relaxed mb-3">
+                      In order for SplitIt to work, you <strong>must have a credit card</strong> with at least <strong>$1,000 in available credit limit</strong>. SplitIt places an authorization hold (not a charge) on your card to ensure funds are available, then deducts monthly payments from that hold.
+                    </p>
+                    <p className="text-sm text-yellow-800">
+                      <strong>Don't have a credit card or sufficient credit?</strong>{' '}
+                      <a 
+                        href="https://www.passionproductformula.com/offers/SKp8SjBE/checkout" 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="text-yellow-900 font-semibold underline hover:text-yellow-700"
+                      >
+                        Click here to pay in full instead
+                      </a>
+                    </p>
+                  </div>
+                </div>
+              </div>
+
               <div className="bg-white/90 backdrop-blur-sm rounded-3xl shadow-2xl border border-gray-200">
                 {/* Checkout Header */}
                 <div className="border-b border-gray-200 p-4">
@@ -344,6 +372,34 @@ const CheckoutPage: React.FC<CheckoutPageProps> = () => {
 
           {/* Right Column - Checkout (Desktop Only) */}
           <div className="lg:col-span-1 order-2 lg:order-2 hidden lg:block">
+            {/* Credit Card Requirements Notice - Desktop */}
+            <div className="mb-6 bg-yellow-50 border-2 border-yellow-400 rounded-2xl p-6 shadow-lg">
+              <div className="flex items-start space-x-3">
+                <div className="bg-yellow-100 p-2 rounded-lg flex-shrink-0">
+                  <CreditCard className="w-6 h-6 text-yellow-700" />
+                </div>
+                <div className="flex-1">
+                  <h3 className="text-lg font-bold text-yellow-900 mb-2">
+                    Credit Card Required for SplitIt
+                  </h3>
+                  <p className="text-sm text-yellow-800 leading-relaxed mb-3">
+                    In order for SplitIt to work, you <strong>must have a credit card</strong> with at least <strong>$1,000 in available credit limit</strong>. SplitIt places an authorization hold (not a charge) on your card to ensure funds are available, then deducts monthly payments from that hold.
+                  </p>
+                  <p className="text-sm text-yellow-800">
+                    <strong>Don't have a credit card or sufficient credit?</strong>{' '}
+                    <a 
+                      href="https://www.passionproductformula.com/offers/SKp8SjBE/checkout" 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="text-yellow-900 font-semibold underline hover:text-yellow-700"
+                    >
+                      Click here to pay in full instead
+                    </a>
+                  </p>
+                </div>
+              </div>
+            </div>
+
             <div className="bg-white/90 backdrop-blur-sm rounded-3xl shadow-2xl border border-gray-200">
               {/* Checkout Header */}
               <div className="border-b border-gray-200 p-4">
@@ -481,9 +537,15 @@ const CheckoutPage: React.FC<CheckoutPageProps> = () => {
               </div>
 
               <div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-2">Payment Schedule</h3>
+                <h3 className="text-xl font-semibold text-gray-900 mb-2">How SplitIt Payment Works</h3>
+                <p className="mb-3">
+                  <strong>Authorization Hold (Not a Charge):</strong> When you complete your purchase, SplitIt places an <strong>authorization hold</strong> on your credit card for the full program amount. This is <strong>not an actual charge</strong> - it's a temporary hold that reserves the funds to ensure you have sufficient credit available.
+                </p>
+                <p className="mb-3">
+                  <strong>Monthly Deductions:</strong> Each month, SplitIt deducts your scheduled payment amount from the authorization hold. The hold ensures that funds are available for all future payments, but you're only actually charged as each monthly payment is processed.
+                </p>
                 <p>
-                  Your payments will be automatically charged to your payment method on a monthly basis. You'll receive notifications before each payment is processed. Make sure your payment method remains valid throughout the installment period.
+                  <strong>Credit Card Requirements:</strong> To use SplitIt, you must have a credit card (not a debit card) with at least <strong>$1,000 in available credit limit</strong>. The authorization hold will reserve the full program amount, so you need sufficient credit available. You'll receive notifications before each monthly payment is processed.
                 </p>
               </div>
 
