@@ -11,6 +11,16 @@ const MainCheckoutPage: React.FC<MainCheckoutPageProps> = () => {
   const [pricingOption, setPricingOption] = useState<'subscription' | 'lifetime'>('lifetime');
   const [spotsLeft, setSpotsLeft] = useState(3); // Starting with 3 spots left out of 10
   const TOTAL_SPOTS = 10;
+  const [currentTestimonial, setCurrentTestimonial] = useState(0);
+
+  // Social proof testimonials
+  const testimonials = [
+    { name: 'Sarah M.', daysAgo: 23, amount: 10000, image: 'https://ui-avatars.com/api/?name=Sarah+M&background=6366f1&color=fff&size=128' },
+    { name: 'Mike T.', daysAgo: 45, amount: 15000, image: 'https://ui-avatars.com/api/?name=Mike+T&background=10b981&color=fff&size=128' },
+    { name: 'Jessica L.', daysAgo: 31, amount: 8500, image: 'https://ui-avatars.com/api/?name=Jessica+L&background=f59e0b&color=fff&size=128' },
+    { name: 'David R.', daysAgo: 67, amount: 25000, image: 'https://ui-avatars.com/api/?name=David+R&background=ef4444&color=fff&size=128' },
+    { name: 'Emily K.', daysAgo: 28, amount: 12000, image: 'https://ui-avatars.com/api/?name=Emily+K&background=8b5cf6&color=fff&size=128' },
+  ];
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -619,10 +629,6 @@ const MainCheckoutPage: React.FC<MainCheckoutPageProps> = () => {
                   <span className="font-semibold">7-Day Guarantee</span>
                 </div>
               </div>
-              <div className="flex items-center justify-center space-x-2 text-xs text-gray-600">
-                <Users className="w-4 h-4 text-blue-600" />
-                <span>500+ students enrolled</span>
-              </div>
             </div>
 
             {/* Security Notice */}
@@ -660,6 +666,80 @@ const MainCheckoutPage: React.FC<MainCheckoutPageProps> = () => {
                 </p>
               </div>
             </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Social Proof Slider - Bottom */}
+      <div className="fixed bottom-0 left-0 right-0 bg-white/95 backdrop-blur-sm border-t border-gray-200 shadow-lg z-50 lg:hidden">
+        <div className="max-w-md mx-auto px-4 py-3">
+          <div className="flex items-center space-x-3 animate-in slide-in-from-bottom">
+            <div className="flex-shrink-0">
+              <img 
+                src={testimonials[currentTestimonial].image} 
+                alt={testimonials[currentTestimonial].name}
+                className="w-12 h-12 rounded-full border-2 border-blue-500"
+              />
+            </div>
+            <div className="flex-1 min-w-0">
+              <p className="text-sm font-semibold text-gray-900">
+                {testimonials[currentTestimonial].name}
+              </p>
+              <p className="text-xs text-gray-600">
+                launched on Amazon {testimonials[currentTestimonial].daysAgo} days ago and just passed ${testimonials[currentTestimonial].amount.toLocaleString()}
+              </p>
+            </div>
+            <div className="flex-shrink-0">
+              <div className="flex space-x-1">
+                {testimonials.map((_, index) => (
+                  <button
+                    key={index}
+                    onClick={() => setCurrentTestimonial(index)}
+                    className={`w-1.5 h-1.5 rounded-full transition-all ${
+                      index === currentTestimonial ? 'bg-blue-500 w-4' : 'bg-gray-300'
+                    }`}
+                    aria-label={`Go to testimonial ${index + 1}`}
+                  />
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Social Proof Slider - Desktop (Right Side) */}
+      <div className="hidden lg:block fixed bottom-0 right-0 w-1/2 bg-white/95 backdrop-blur-sm border-t border-gray-200 shadow-lg z-50">
+        <div className="max-w-md mx-auto px-4 py-3">
+          <div className="flex items-center space-x-3">
+            <div className="flex-shrink-0">
+              <img 
+                src={testimonials[currentTestimonial].image} 
+                alt={testimonials[currentTestimonial].name}
+                className="w-12 h-12 rounded-full border-2 border-blue-500"
+              />
+            </div>
+            <div className="flex-1 min-w-0">
+              <p className="text-sm font-semibold text-gray-900">
+                {testimonials[currentTestimonial].name}
+              </p>
+              <p className="text-xs text-gray-600">
+                launched on Amazon {testimonials[currentTestimonial].daysAgo} days ago and just passed ${testimonials[currentTestimonial].amount.toLocaleString()}
+              </p>
+            </div>
+            <div className="flex-shrink-0">
+              <div className="flex space-x-1">
+                {testimonials.map((_, index) => (
+                  <button
+                    key={index}
+                    onClick={() => setCurrentTestimonial(index)}
+                    className={`w-1.5 h-1.5 rounded-full transition-all ${
+                      index === currentTestimonial ? 'bg-blue-500 w-4' : 'bg-gray-300'
+                    }`}
+                    aria-label={`Go to testimonial ${index + 1}`}
+                  />
+                ))}
+              </div>
             </div>
           </div>
         </div>
