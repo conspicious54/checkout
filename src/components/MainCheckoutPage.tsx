@@ -269,71 +269,100 @@ const MainCheckoutPage: React.FC<MainCheckoutPageProps> = () => {
               </div>
             </div>
 
-            {/* Program Features */}
-            <div className="space-y-4">
-              <h3 className="text-xl font-bold text-white mb-5">
+            {/* Program Features - Emotional Focus */}
+            <div className="space-y-6">
+              <h3 className="text-xl font-bold text-white mb-6">
                 What You Get:
               </h3>
               
-              <div className="space-y-4">
-                <div className="bg-gray-800/80 backdrop-blur-sm border border-gray-700 rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300">
-                  <div className="flex items-start space-x-4">
-                    <div className="bg-blue-500/20 p-3 rounded-xl">
-                      <BookOpen className="w-6 h-6 text-blue-400" />
-                    </div>
-                    <div>
-                      <h4 className="font-bold text-white mb-2">117 Step By Step Video Lessons</h4>
-                      <p className="text-gray-300 leading-relaxed">Comprehensive videos guide you through every phase of starting an Amazon business.</p>
-                    </div>
+              {/* 1. The Roadmap */}
+              <div className="bg-gray-800/80 backdrop-blur-sm border border-gray-700 rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300">
+                <div className="flex items-start space-x-4 mb-4">
+                  <div className="bg-blue-500/20 p-3 rounded-xl">
+                    <BookOpen className="w-6 h-6 text-blue-400" />
+                  </div>
+                  <div className="flex-1">
+                    <h4 className="text-lg font-bold text-white mb-1">The Roadmap</h4>
+                    <p className="text-sm text-gray-400 mb-4">Know every step so you don't get lost along the way</p>
+                    <ul className="space-y-2">
+                      <li className="flex items-start space-x-2 text-gray-300">
+                        <CheckCircle className="w-4 h-4 text-blue-400 mt-0.5 flex-shrink-0" />
+                        <span className="text-sm">117 Step By Step Video Lessons</span>
+                      </li>
+                      <li className="flex items-start space-x-2 text-gray-300">
+                        <CheckCircle className="w-4 h-4 text-blue-400 mt-0.5 flex-shrink-0" />
+                        <span className="text-sm">Continuous Weekly Q&A Calls</span>
+                      </li>
+                      <li className="flex items-start space-x-2 text-gray-300">
+                        <CheckCircle className="w-4 h-4 text-blue-400 mt-0.5 flex-shrink-0" />
+                        <span className="text-sm">2000+ Question Q&A Database</span>
+                      </li>
+                      <li className="flex items-start space-x-2 text-gray-300">
+                        <CheckCircle className="w-4 h-4 text-blue-400 mt-0.5 flex-shrink-0" />
+                        <span className="text-sm">2 Free 1 on 1 Coaching Sessions</span>
+                      </li>
+                    </ul>
                   </div>
                 </div>
+              </div>
 
-                <div className="bg-gray-800/80 backdrop-blur-sm border border-gray-700 rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300">
-                  <div className="flex items-start space-x-4">
-                    <div className="bg-green-500/20 p-3 rounded-xl">
-                      <Calendar className="w-6 h-6 text-green-400" />
-                    </div>
-                    <div>
-                      <h4 className="font-bold text-white mb-2">Continuous Weekly Q&A Calls</h4>
-                      <p className="text-gray-300 leading-relaxed">Ongoing support through live weekly sessions to answer your questions.</p>
-                    </div>
+              {/* 2. Accountability */}
+              <div className="bg-gray-800/80 backdrop-blur-sm border border-gray-700 rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300">
+                <div className="flex items-start space-x-4 mb-4">
+                  <div className="bg-green-500/20 p-3 rounded-xl">
+                    <CheckCircle className="w-6 h-6 text-green-400" />
+                  </div>
+                  <div className="flex-1">
+                    <h4 className="text-lg font-bold text-white mb-1">Accountability</h4>
+                    <p className="text-sm text-gray-400 mb-4">We make sure you actually show up and stick with it.</p>
+                    <ul className="space-y-2">
+                      <li className="flex items-start space-x-2 text-gray-300">
+                        <CheckCircle className="w-4 h-4 text-green-400 mt-0.5 flex-shrink-0" />
+                        <span className="text-sm">Paired Accountability Group</span>
+                      </li>
+                      <li className="flex items-start space-x-2 text-gray-300">
+                        <CheckCircle className="w-4 h-4 text-green-400 mt-0.5 flex-shrink-0" />
+                        <span className="text-sm">Monthly Coaching CheckIns</span>
+                      </li>
+                      <li className="flex items-start space-x-2 text-gray-300">
+                        <CheckCircle className="w-4 h-4 text-green-400 mt-0.5 flex-shrink-0" />
+                        <span className="text-sm">Accountability Oath</span>
+                      </li>
+                    </ul>
                   </div>
                 </div>
+              </div>
 
-                <div className="bg-gray-800/80 backdrop-blur-sm border border-gray-700 rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300">
-                  <div className="flex items-start space-x-4">
-                    <div className="bg-purple-500/20 p-3 rounded-xl">
-                      <Users className="w-6 h-6 text-purple-400" />
-                    </div>
-                    <div>
-                      <h4 className="font-bold text-white mb-2">Private Facebook Mastermind Membership</h4>
-                      <p className="text-gray-300 leading-relaxed">Access to an exclusive community for networking and support.</p>
-                    </div>
+              {/* 3. Community */}
+              <div className="bg-gray-800/80 backdrop-blur-sm border border-gray-700 rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300">
+                <div className="flex items-start space-x-4 mb-4">
+                  <div className="bg-purple-500/20 p-3 rounded-xl">
+                    <Users className="w-6 h-6 text-purple-400" />
+                  </div>
+                  <div className="flex-1">
+                    <h4 className="text-lg font-bold text-white mb-1">Community</h4>
+                    <p className="text-sm text-gray-400 mb-4">So you don't have to do this alone.</p>
+                    <ul className="space-y-2">
+                      <li className="flex items-start space-x-2 text-gray-300">
+                        <CheckCircle className="w-4 h-4 text-purple-400 mt-0.5 flex-shrink-0" />
+                        <span className="text-sm">Private Facebook Mastermind Membership</span>
+                      </li>
+                      <li className="flex items-start space-x-2 text-gray-300">
+                        <CheckCircle className="w-4 h-4 text-purple-400 mt-0.5 flex-shrink-0" />
+                        <span className="text-sm">Access to our database of hundreds of manufacturers, designers, product sourcers, and more</span>
+                      </li>
+                    </ul>
                   </div>
                 </div>
+              </div>
 
-                <div className="bg-gray-800/80 backdrop-blur-sm border border-gray-700 rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300">
-                  <div className="flex items-start space-x-4">
-                    <div className="bg-orange-500/20 p-3 rounded-xl">
-                      <CheckCircle className="w-6 h-6 text-orange-400" />
-                    </div>
-                    <div>
-                      <h4 className="font-bold text-white mb-2">2 Free 1 on 1 Coaching Sessions</h4>
-                      <p className="text-gray-300 leading-relaxed">Personalized coaching with Travis or a certified coach.</p>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="bg-gray-800/80 backdrop-blur-sm border border-gray-700 rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300">
-                  <div className="flex items-start space-x-4">
-                    <div className="bg-red-500/20 p-3 rounded-xl">
-                      <MessageCircle className="w-6 h-6 text-red-400" />
-                    </div>
-                    <div>
-                      <h4 className="font-bold text-white mb-2">2000+ Question Q&A Database</h4>
-                      <p className="text-gray-300 leading-relaxed">Access a library of answered questions to troubleshoot your business.</p>
-                    </div>
-                  </div>
+              {/* Result Statement */}
+              <div className="bg-gradient-to-r from-blue-600/20 to-purple-600/20 border-2 border-blue-500/30 rounded-2xl p-6 shadow-lg">
+                <div className="text-center">
+                  <h4 className="text-lg font-bold text-white mb-2">The Result</h4>
+                  <p className="text-gray-200 leading-relaxed">
+                    With these steps, we hope that in <strong className="text-white">4-6 months</strong>, you have a fully operational Amazon business that's providing you the <strong className="text-white">time and money freedom</strong> you need to live your life.
+                  </p>
                 </div>
               </div>
             </div>
