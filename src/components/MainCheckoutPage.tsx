@@ -287,6 +287,7 @@ const MainCheckoutPage: React.FC<MainCheckoutPageProps> = () => {
                     
                     {/* Whop Checkout Integration */}
                     <WhopCheckoutEmbed 
+                      key={pricingOption === 'lifetime' ? 'lifetime' : 'subscription'}
                       planId={pricingOption === 'lifetime' ? 'plan_KrBlX3ZaAFIGT' : 'plan_1l3co0swjIcbS'}
                       theme="light"
                       hidePrice={true}
@@ -638,7 +639,8 @@ const MainCheckoutPage: React.FC<MainCheckoutPageProps> = () => {
                   
                   {/* Whop Checkout Integration */}
                   <WhopCheckoutEmbed 
-                    planId={pricingOption === 'lifetime' ? 'plan_KrBlX3ZaAFIGT' : 'plan_H1mVQKjoy1rTi'}
+                    key={pricingOption === 'lifetime' ? 'lifetime' : 'subscription'}
+                    planId={pricingOption === 'lifetime' ? 'plan_KrBlX3ZaAFIGT' : 'plan_1l3co0swjIcbS'}
                     theme="light"
                     hidePrice={true}
                     skipRedirect={false}
