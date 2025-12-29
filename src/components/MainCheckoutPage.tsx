@@ -97,9 +97,9 @@ const MainCheckoutPage: React.FC<MainCheckoutPageProps> = () => {
                 </div>
               </div>
               
-              {/* Bonus Item for Lifetime */}
+              {/* Bonus Items for Lifetime */}
               {pricingOption === 'lifetime' && (
-                <div className="p-4 bg-gradient-to-r from-orange-600/20 to-yellow-600/20 border-t border-orange-500/30">
+                <div className="p-4 bg-gradient-to-r from-orange-600/20 to-yellow-600/20 border-t border-orange-500/30 space-y-3">
                   <div className="flex items-center space-x-3">
                     <div className="bg-orange-500/20 p-2 rounded-lg">
                       <CheckCircle className="w-5 h-5 text-orange-400" />
@@ -107,6 +107,15 @@ const MainCheckoutPage: React.FC<MainCheckoutPageProps> = () => {
                     <div>
                       <div className="text-sm font-bold text-orange-300">Bonus: 2 Free 1 on 1 Coaching Sessions</div>
                       <div className="text-xs text-orange-200">Personalized coaching with Travis or a certified coach</div>
+                    </div>
+                  </div>
+                  <div className="flex items-center space-x-3 pt-2 border-t border-orange-500/30">
+                    <div className="bg-orange-500/20 p-2 rounded-lg">
+                      <Award className="w-5 h-5 text-orange-400" />
+                    </div>
+                    <div>
+                      <div className="text-sm font-bold text-orange-300">Bonus: 40% Off All Design Services</div>
+                      <div className="text-xs text-orange-200">From FBACreatives - professional design services for your Amazon business</div>
                     </div>
                   </div>
                 </div>
