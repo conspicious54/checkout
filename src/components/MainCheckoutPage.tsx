@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Shield, Clock, CheckCircle, Star, Loader, Users, BookOpen, Calendar, MessageCircle, Award, Zap, TrendingUp, X } from 'lucide-react';
+import { Shield, Clock, CheckCircle, Star, Loader, Users, BookOpen, Calendar, MessageCircle, Award, Zap, TrendingUp, X, HelpCircle } from 'lucide-react';
 import { WhopCheckoutEmbed } from "@whop/react/checkout";
 
 interface MainCheckoutPageProps {
@@ -23,6 +23,7 @@ const MainCheckoutPage: React.FC<MainCheckoutPageProps> = () => {
 
   const [timeLeft, setTimeLeft] = useState(600); // 10 minutes in seconds
   const [pricingOption, setPricingOption] = useState<'subscription' | 'lifetime'>('lifetime');
+  const [validatedProductIdea, setValidatedProductIdea] = useState(false);
   const TOTAL_SPOTS = 10;
   const [spotsLeft, setSpotsLeft] = useState(getInitialSpots()); // Starting spots from URL or default
   const [currentTestimonial, setCurrentTestimonial] = useState(0);
@@ -75,11 +76,11 @@ const MainCheckoutPage: React.FC<MainCheckoutPageProps> = () => {
       setCurrentTestimonial(Math.floor(Math.random() * 5));
     }, 10000);
 
-    // Then show popup every 25-35 seconds
+    // Then show popup every 60 seconds (half as often)
     const popupInterval = setInterval(() => {
       setCurrentTestimonial(Math.floor(Math.random() * 5));
       setShowPopup(true);
-    }, 30000); // Every 30 seconds
+    }, 60000); // Every 60 seconds
 
     return () => {
       clearTimeout(initialTimer);
@@ -140,7 +141,11 @@ const MainCheckoutPage: React.FC<MainCheckoutPageProps> = () => {
                   <div className="text-right">
                     <div className="inline-flex items-baseline space-x-1">
                       <span className="text-3xl font-bold text-white">
-                        {pricingOption === 'subscription' ? '$299.99' : '$997'}
+                        {pricingOption === 'subscription' 
+                          ? '$299.99' 
+                          : validatedProductIdea 
+                            ? '$1,997' 
+                            : '$997'}
                       </span>
                       {pricingOption === 'subscription' && (
                         <span className="text-base font-semibold text-gray-300">/month</span>
@@ -150,7 +155,9 @@ const MainCheckoutPage: React.FC<MainCheckoutPageProps> = () => {
                       {pricingOption === 'lifetime' ? (
                         <>
                           One-time payment
-                          <span className="block text-green-400 font-semibold mt-0.5">Save $2,600+ vs monthly</span>
+                          {!validatedProductIdea && (
+                            <span className="block text-green-400 font-semibold mt-0.5">Save $2,600+ vs monthly</span>
+                          )}
                         </>
                       ) : (
                         'Cancel anytime • Monthly billing'
@@ -159,6 +166,43 @@ const MainCheckoutPage: React.FC<MainCheckoutPageProps> = () => {
                   </div>
                 </div>
               </div>
+
+              {/* Validated Product Idea Toggle - Only for Lifetime */}
+              {pricingOption === 'lifetime' && (
+                <div className="p-4 border-t border-gray-700">
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center space-x-2">
+                      <label className="flex items-center space-x-2 cursor-pointer">
+                        <div className="relative">
+                          <input
+                            type="checkbox"
+                            checked={validatedProductIdea}
+                            onChange={(e) => setValidatedProductIdea(e.target.checked)}
+                            className="sr-only"
+                          />
+                          <div className={`w-11 h-6 rounded-full transition-colors duration-200 ${
+                            validatedProductIdea ? 'bg-blue-500' : 'bg-gray-600'
+                          }`}>
+                            <div className={`w-5 h-5 bg-white rounded-full shadow-md transform transition-transform duration-200 ${
+                              validatedProductIdea ? 'translate-x-5' : 'translate-x-0.5'
+                            } mt-0.5`}></div>
+                          </div>
+                        </div>
+                        <span className="text-sm text-gray-300">Add A Validated Product Idea For $997</span>
+                      </label>
+                      <div className="group relative">
+                        <HelpCircle className="w-4 h-4 text-gray-400 hover:text-gray-300 cursor-help" />
+                        <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 w-64 p-3 bg-gray-800 border border-gray-700 rounded-lg shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-10">
+                          <p className="text-xs text-gray-200 leading-relaxed">
+                            <strong className="text-white">What is a Validated Product Idea?</strong> Travis and the team will take your interests and parameters (budget, timeline, etc...) and come up with a PDF presentation of 5-6 validated product ideas that we're confident are winners.
+                          </p>
+                          <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-full w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent border-t-gray-800"></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              )}
               
               {/* Bonus Items for Lifetime */}
               {pricingOption === 'lifetime' && (
@@ -287,8 +331,12 @@ const MainCheckoutPage: React.FC<MainCheckoutPageProps> = () => {
                     
                     {/* Whop Checkout Integration */}
                     <WhopCheckoutEmbed 
-                      key={pricingOption === 'lifetime' ? 'lifetime' : 'subscription'}
-                      planId={pricingOption === 'lifetime' ? 'plan_KrBlX3ZaAFIGT' : 'plan_1l3co0swjIcbS'}
+                      key={pricingOption === 'lifetime' ? (validatedProductIdea ? 'lifetime-validated' : 'lifetime') : 'subscription'}
+                      planId={
+                        pricingOption === 'lifetime' 
+                          ? (validatedProductIdea ? 'plan_nsKbk4iQTYNbw' : 'plan_KrBlX3ZaAFIGT')
+                          : 'plan_1l3co0swjIcbS'
+                      }
                       theme="light"
                       hidePrice={true}
                       skipRedirect={false}
