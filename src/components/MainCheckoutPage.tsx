@@ -52,6 +52,15 @@ const MainCheckoutPage: React.FC<MainCheckoutPageProps> = () => {
     return () => clearInterval(spotsTimer);
   }, []);
 
+  // Rotate testimonials
+  useEffect(() => {
+    const testimonialTimer = setInterval(() => {
+      setCurrentTestimonial((prev) => (prev + 1) % 5); // 5 testimonials
+    }, 5000); // Change every 5 seconds
+
+    return () => clearInterval(testimonialTimer);
+  }, []);
+
   const formatTime = (seconds: number) => {
     const minutes = Math.floor(seconds / 60);
     const remainingSeconds = seconds % 60;
