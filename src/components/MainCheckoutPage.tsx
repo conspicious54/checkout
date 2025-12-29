@@ -8,6 +8,7 @@ interface MainCheckoutPageProps {
 
 const MainCheckoutPage: React.FC<MainCheckoutPageProps> = () => {
   const [timeLeft, setTimeLeft] = useState(600); // 10 minutes in seconds
+  const [pricingOption, setPricingOption] = useState<'subscription' | 'lifetime'>('lifetime');
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -63,7 +64,12 @@ const MainCheckoutPage: React.FC<MainCheckoutPageProps> = () => {
             {/* Price Display */}
             <div className="text-center lg:text-left">
               <div className="inline-flex items-baseline space-x-2 mb-4">
-                <span className="text-5xl font-bold text-gray-900">$997</span>
+                <span className="text-5xl font-bold text-gray-900">
+                  {pricingOption === 'subscription' ? '$299.99' : '$997'}
+                </span>
+                {pricingOption === 'subscription' && (
+                  <span className="text-xl font-semibold text-gray-700">/month</span>
+                )}
               </div>
             </div>
 
@@ -94,6 +100,34 @@ const MainCheckoutPage: React.FC<MainCheckoutPageProps> = () => {
                   <p className="text-gray-600 leading-relaxed">
                     Secure your spot in the Passion Product Formula program today.
                   </p>
+                </div>
+
+                {/* Pricing Toggle - Mobile */}
+                <div className="p-4 border-b border-gray-200">
+                  <div className="flex bg-gray-100 rounded-lg p-1">
+                    <button
+                      onClick={() => setPricingOption('subscription')}
+                      className={`flex-1 py-3 px-4 rounded-md font-semibold text-sm transition-all duration-200 ${
+                        pricingOption === 'subscription'
+                          ? 'bg-white text-gray-900 shadow-sm'
+                          : 'text-gray-600 hover:text-gray-900'
+                      }`}
+                    >
+                      Subscribe
+                      <span className="block text-xs font-normal mt-1">$299.99/mo</span>
+                    </button>
+                    <button
+                      onClick={() => setPricingOption('lifetime')}
+                      className={`flex-1 py-3 px-4 rounded-md font-semibold text-sm transition-all duration-200 ${
+                        pricingOption === 'lifetime'
+                          ? 'bg-white text-gray-900 shadow-sm'
+                          : 'text-gray-600 hover:text-gray-900'
+                      }`}
+                    >
+                      Lifetime Access
+                      <span className="block text-xs font-normal mt-1">$997</span>
+                    </button>
+                  </div>
                 </div>
 
                 {/* Checkout Content */}
@@ -327,6 +361,34 @@ const MainCheckoutPage: React.FC<MainCheckoutPageProps> = () => {
                 <p className="text-gray-600 leading-relaxed">
                   Secure your spot in the Passion Product Formula program today.
                 </p>
+              </div>
+
+              {/* Pricing Toggle - Desktop */}
+              <div className="p-4 border-b border-gray-200">
+                <div className="flex bg-gray-100 rounded-lg p-1">
+                  <button
+                    onClick={() => setPricingOption('subscription')}
+                    className={`flex-1 py-3 px-4 rounded-md font-semibold text-sm transition-all duration-200 ${
+                      pricingOption === 'subscription'
+                        ? 'bg-white text-gray-900 shadow-sm'
+                        : 'text-gray-600 hover:text-gray-900'
+                    }`}
+                  >
+                    Subscribe
+                    <span className="block text-xs font-normal mt-1">$299.99/mo</span>
+                  </button>
+                  <button
+                    onClick={() => setPricingOption('lifetime')}
+                    className={`flex-1 py-3 px-4 rounded-md font-semibold text-sm transition-all duration-200 ${
+                      pricingOption === 'lifetime'
+                        ? 'bg-white text-gray-900 shadow-sm'
+                        : 'text-gray-600 hover:text-gray-900'
+                    }`}
+                  >
+                    Lifetime Access
+                    <span className="block text-xs font-normal mt-1">$997</span>
+                  </button>
+                </div>
               </div>
 
               {/* Checkout Content */}
