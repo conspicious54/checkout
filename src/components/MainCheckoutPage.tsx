@@ -99,6 +99,16 @@ const MainCheckoutPage: React.FC<MainCheckoutPageProps> = () => {
     }
   }, [showPopup]);
 
+  // Update document title with current price
+  useEffect(() => {
+    const price = pricingOption === 'subscription' 
+      ? '$299.99/mo' 
+      : validatedProductIdea 
+        ? '$1,997' 
+        : '$997';
+    document.title = `Passion Product Formula - ${price}`;
+  }, [pricingOption, validatedProductIdea]);
+
   const formatTime = (seconds: number) => {
     const minutes = Math.floor(seconds / 60);
     const remainingSeconds = seconds % 60;
@@ -734,8 +744,12 @@ const MainCheckoutPage: React.FC<MainCheckoutPageProps> = () => {
                   
                   {/* Whop Checkout Integration */}
                   <WhopCheckoutEmbed 
-                    key={pricingOption === 'lifetime' ? 'lifetime' : 'subscription'}
-                    planId={pricingOption === 'lifetime' ? 'plan_KrBlX3ZaAFIGT' : 'plan_1l3co0swjIcbS'}
+                    key={pricingOption === 'lifetime' ? (validatedProductIdea ? 'lifetime-validated' : 'lifetime') : 'subscription'}
+                    planId={
+                      pricingOption === 'lifetime' 
+                        ? (validatedProductIdea ? 'plan_nsKbk4iQTYNbw' : 'plan_KrBlX3ZaAFIGT')
+                        : 'plan_1l3co0swjIcbS'
+                    }
                     theme="light"
                     hidePrice={true}
                     skipRedirect={false}
