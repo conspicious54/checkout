@@ -705,7 +705,7 @@ const MainCheckoutPage: React.FC<MainCheckoutPageProps> = () => {
 
       {/* Social Proof Popup */}
       {showPopup && (
-        <div className="fixed bottom-4 right-4 lg:right-8 z-50 animate-in slide-in-from-bottom-4 fade-in duration-300">
+        <div className="fixed bottom-4 right-4 lg:right-8 z-50 animate-[slideIn_0.3s_ease-out]">
           <div className="bg-white rounded-xl shadow-2xl border border-gray-200 p-4 max-w-sm w-[calc(100vw-2rem)] lg:w-auto">
             <div className="flex items-start space-x-3">
               <div className="flex-shrink-0">
