@@ -50,31 +50,6 @@ const MainCheckoutPage: React.FC<MainCheckoutPageProps> = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-blue-50">
-      {/* Compact Header */}
-      <div className="bg-white/80 backdrop-blur-sm shadow-md border-b border-gray-200 sticky top-0 z-50">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-16">
-            <div className="flex items-center">
-              <img 
-                src="https://passionproduct.com/wp-content/uploads/2024/10/Passion-Product-only-logo-1-768x432.png"
-                alt="Passion Product Formula"
-                className="h-10 w-auto"
-              />
-            </div>
-            <div className="flex items-center space-x-2">
-              <div className="flex items-center space-x-1.5 text-xs text-red-600 bg-red-50 border border-red-200 px-3 py-1.5 rounded-full">
-                <Clock className="w-3.5 h-3.5" />
-                <span className="font-semibold">Reserved: {formatTime(timeLeft)}</span>
-              </div>
-              <div className="flex items-center space-x-1.5 text-xs text-gray-700 bg-green-50 border border-green-200 px-3 py-1.5 rounded-full">
-                <Shield className="w-3.5 h-3.5 text-green-600" />
-                <span className="font-semibold">Secure</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
       {/* Compact Spots Left Banner */}
       <div className="bg-gradient-to-r from-red-600 to-orange-600 text-white py-2.5 shadow-md">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -92,23 +67,48 @@ const MainCheckoutPage: React.FC<MainCheckoutPageProps> = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
           {/* Left Column - Product Info & Features */}
           <div className="space-y-8 order-1 lg:order-1">
-            {/* Condensed Price & Social Proof */}
-            <div className="text-center lg:text-left">
-              <div className="flex items-center justify-center lg:justify-start space-x-2 mb-2">
-                <Users className="w-4 h-4 text-blue-600" />
-                <span className="text-xs text-gray-600">500+ students enrolled</span>
+            {/* Pricing Box - Similar to Checkout Box */}
+            <div className="bg-white/90 backdrop-blur-sm rounded-3xl shadow-2xl border border-gray-200">
+              <div className="border-b border-gray-200 p-4">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <h2 className="text-xl font-bold text-gray-900 mb-1">
+                      Passion Product Formula
+                    </h2>
+                    <p className="text-sm text-gray-600">
+                      {pricingOption === 'lifetime' ? 'Lifetime Access' : 'Monthly Subscription'}
+                    </p>
+                  </div>
+                  <div className="text-right">
+                    <div className="inline-flex items-baseline space-x-1">
+                      <span className="text-3xl font-bold text-gray-900">
+                        {pricingOption === 'subscription' ? '$299.99' : '$997'}
+                      </span>
+                      {pricingOption === 'subscription' && (
+                        <span className="text-base font-semibold text-gray-700">/month</span>
+                      )}
+                    </div>
+                    <div className="text-xs text-gray-600 mt-1">
+                      {pricingOption === 'lifetime' ? 'One-time payment' : 'Cancel anytime • Monthly billing'}
+                    </div>
+                  </div>
+                </div>
               </div>
-              <div className="inline-flex items-baseline space-x-2 mb-1">
-                <span className="text-4xl font-bold text-gray-900">
-                  {pricingOption === 'subscription' ? '$299.99' : '$997'}
-                </span>
-                {pricingOption === 'subscription' && (
-                  <span className="text-lg font-semibold text-gray-700">/month</span>
-                )}
-              </div>
-              <div className="text-sm text-gray-600">
-                {pricingOption === 'lifetime' ? 'One-time payment • Lifetime access' : 'Cancel anytime • Monthly billing'}
-              </div>
+              
+              {/* Bonus Item for Lifetime */}
+              {pricingOption === 'lifetime' && (
+                <div className="p-4 bg-gradient-to-r from-orange-50 to-yellow-50 border-t border-orange-200">
+                  <div className="flex items-center space-x-3">
+                    <div className="bg-orange-100 p-2 rounded-lg">
+                      <CheckCircle className="w-5 h-5 text-orange-600" />
+                    </div>
+                    <div>
+                      <div className="text-sm font-bold text-orange-900">Bonus: 2 Free 1 on 1 Coaching Sessions</div>
+                      <div className="text-xs text-orange-700">Personalized coaching with Travis or a certified coach</div>
+                    </div>
+                  </div>
+                </div>
+              )}
             </div>
 
             {/* Video Section */}
@@ -523,6 +523,24 @@ const MainCheckoutPage: React.FC<MainCheckoutPageProps> = () => {
                     }
                   />
                 </div>
+              </div>
+            </div>
+
+            {/* Info Below Checkout - Desktop */}
+            <div className="mt-5 space-y-3">
+              <div className="flex items-center justify-center space-x-3 text-xs">
+                <div className="flex items-center space-x-1.5 text-red-600 bg-red-50 border border-red-200 px-3 py-1.5 rounded-full">
+                  <Clock className="w-3.5 h-3.5" />
+                  <span className="font-semibold">Reserved: {formatTime(timeLeft)}</span>
+                </div>
+                <div className="flex items-center space-x-1.5 text-gray-700 bg-green-50 border border-green-200 px-3 py-1.5 rounded-full">
+                  <Shield className="w-3.5 h-3.5 text-green-600" />
+                  <span className="font-semibold">Secure</span>
+                </div>
+              </div>
+              <div className="flex items-center justify-center space-x-2 text-xs text-gray-600">
+                <Users className="w-4 h-4 text-blue-600" />
+                <span>500+ students enrolled</span>
               </div>
             </div>
 
