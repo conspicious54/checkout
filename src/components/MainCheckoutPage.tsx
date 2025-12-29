@@ -444,8 +444,8 @@ const MainCheckoutPage: React.FC<MainCheckoutPageProps> = () => {
               </div>
             </div>
 
-            {/* Testimonials */}
-            <div className="space-y-5">
+            {/* Testimonials - Video Success Stories */}
+            <div className="space-y-6">
               <div className="text-center lg:text-left mb-5">
                 <h3 className="text-xl font-bold text-white mb-1">
                   Success Stories
@@ -453,43 +453,66 @@ const MainCheckoutPage: React.FC<MainCheckoutPageProps> = () => {
                 <p className="text-sm text-gray-400">Real results from our students</p>
               </div>
               
-              <div className="bg-gradient-to-br from-gray-800 to-gray-700 border-2 border-blue-500/30 rounded-2xl p-8 shadow-xl hover:shadow-2xl transition-shadow">
-                <div className="flex items-center justify-between mb-4">
-                  <div className="flex space-x-1">
-                    {[...Array(5)].map((_, i) => (
-                      <Star key={i} className="w-5 h-5 text-yellow-400 fill-current" />
-                    ))}
-                  </div>
-                  <div className="bg-green-500/20 text-green-300 text-xs font-bold px-3 py-1 rounded-full border border-green-500/30">
-                    $100K/Month
-                  </div>
+              {/* Video Testimonials */}
+              <div className="space-y-6">
+                <div className="relative aspect-video bg-black rounded-2xl overflow-hidden shadow-2xl">
+                  <iframe
+                    src="https://fast.wistia.com/embed/medias/b59ry1rcif"
+                    title="Student Success Story 1"
+                    className="w-full h-full"
+                    allow="autoplay; fullscreen"
+                    allowFullScreen
+                  ></iframe>
                 </div>
-                <blockquote className="text-gray-200 mb-6 leading-relaxed text-lg font-medium">
-                  "I'm currently doing <strong className="text-white">$100,000 a month</strong> selling my Passion Product on Amazon and a big part of my success is thanks to Travis and this course. This course is the perfect starting program out there and will get you selling on Amazon in months if you take it seriously as I did."
-                </blockquote>
-                <div className="flex items-center justify-between">
-                  <cite className="text-base font-bold text-white">- Mina</cite>
-                  <span className="text-xs text-gray-400">Verified Student</span>
-                </div>
-              </div>
 
-              <div className="bg-gradient-to-br from-gray-800 to-gray-700 border-2 border-green-500/30 rounded-2xl p-8 shadow-xl hover:shadow-2xl transition-shadow">
-                <div className="flex items-center justify-between mb-4">
-                  <div className="flex space-x-1">
-                    {[...Array(5)].map((_, i) => (
-                      <Star key={i} className="w-5 h-5 text-yellow-400 fill-current" />
-                    ))}
-                  </div>
-                  <div className="bg-blue-500/20 text-blue-300 text-xs font-bold px-3 py-1 rounded-full border border-blue-500/30">
-                    $2K/Month Profit
-                  </div>
+                <div className="relative aspect-video bg-black rounded-2xl overflow-hidden shadow-2xl">
+                  <iframe
+                    src="https://fast.wistia.com/embed/medias/frer1czlo4"
+                    title="Student Success Story 2"
+                    className="w-full h-full"
+                    allow="autoplay; fullscreen"
+                    allowFullScreen
+                  ></iframe>
                 </div>
-                <blockquote className="text-gray-200 mb-6 leading-relaxed text-lg font-medium">
-                  "I have been selling on Amazon for 6 months already and I can't recommend this course more. It taught me everything I have needed to create my product and sell it on Amazon. I love tennis so I decided to create a product around the sport and now I am making an extra <strong className="text-white">$2,000 a month profit</strong> from selling something I'm passionate about!"
-                </blockquote>
-                <div className="flex items-center justify-between">
-                  <cite className="text-base font-bold text-white">- Troy</cite>
-                  <span className="text-xs text-gray-400">Verified Student</span>
+
+                <div className="relative aspect-video bg-black rounded-2xl overflow-hidden shadow-2xl">
+                  <iframe
+                    src="https://fast.wistia.com/embed/medias/zzus1p2wdz"
+                    title="Student Success Story 3"
+                    className="w-full h-full"
+                    allow="autoplay; fullscreen"
+                    allowFullScreen
+                  ></iframe>
+                </div>
+
+                <div className="relative aspect-video bg-black rounded-2xl overflow-hidden shadow-2xl">
+                  <iframe
+                    src="https://fast.wistia.com/embed/medias/qnfz99q85n"
+                    title="Student Success Story 4"
+                    className="w-full h-full"
+                    allow="autoplay; fullscreen"
+                    allowFullScreen
+                  ></iframe>
+                </div>
+
+                <div className="relative aspect-video bg-black rounded-2xl overflow-hidden shadow-2xl">
+                  <iframe
+                    src="https://fast.wistia.com/embed/medias/f682mke8bh"
+                    title="Student Success Story 5"
+                    className="w-full h-full"
+                    allow="autoplay; fullscreen"
+                    allowFullScreen
+                  ></iframe>
+                </div>
+
+                <div className="relative aspect-video bg-black rounded-2xl overflow-hidden shadow-2xl">
+                  <iframe
+                    src="https://fast.wistia.com/embed/medias/s1wneoen7u"
+                    title="Student Success Story 6"
+                    className="w-full h-full"
+                    allow="autoplay; fullscreen"
+                    allowFullScreen
+                  ></iframe>
                 </div>
               </div>
             </div>
