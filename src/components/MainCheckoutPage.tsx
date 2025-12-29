@@ -7,10 +7,24 @@ interface MainCheckoutPageProps {
 }
 
 const MainCheckoutPage: React.FC<MainCheckoutPageProps> = () => {
+  // Get spots from URL parameter
+  const getInitialSpots = () => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const spotsParam = urlParams.get('spots');
+    if (spotsParam) {
+      const spots = parseInt(spotsParam, 10);
+      // Validate: must be between 1 and TOTAL_SPOTS
+      if (!isNaN(spots) && spots >= 1 && spots <= 10) {
+        return spots;
+      }
+    }
+    return 3; // Default value
+  };
+
   const [timeLeft, setTimeLeft] = useState(600); // 10 minutes in seconds
   const [pricingOption, setPricingOption] = useState<'subscription' | 'lifetime'>('lifetime');
-  const [spotsLeft, setSpotsLeft] = useState(3); // Starting with 3 spots left out of 10
   const TOTAL_SPOTS = 10;
+  const [spotsLeft, setSpotsLeft] = useState(getInitialSpots()); // Starting spots from URL or default
   const [currentTestimonial, setCurrentTestimonial] = useState(0);
   const [showPopup, setShowPopup] = useState(false);
 
