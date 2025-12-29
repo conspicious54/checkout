@@ -289,7 +289,10 @@ const MainCheckoutPage: React.FC<MainCheckoutPageProps> = () => {
                 <div className="p-4 border-b border-gray-200">
                   <div className="flex bg-gray-100 rounded-lg p-1 relative">
                     <button
-                      onClick={() => setPricingOption('subscription')}
+                      onClick={() => {
+                        setPricingOption('subscription');
+                        setValidatedProductIdea(false);
+                      }}
                       className={`flex-1 py-2.5 px-3 rounded-md font-semibold text-sm transition-all duration-200 relative ${
                         pricingOption === 'subscription'
                           ? 'bg-white text-gray-900 shadow-sm'
