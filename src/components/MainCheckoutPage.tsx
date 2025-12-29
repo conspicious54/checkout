@@ -49,7 +49,7 @@ const MainCheckoutPage: React.FC<MainCheckoutPageProps> = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-blue-50">
+    <div className="min-h-screen">
       {/* Compact Spots Left Banner */}
       <div className="bg-gradient-to-r from-red-600 to-orange-600 text-white py-2.5 shadow-md">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -64,31 +64,31 @@ const MainCheckoutPage: React.FC<MainCheckoutPageProps> = () => {
       </div>
 
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-          {/* Left Column - Product Info & Features */}
-          <div className="space-y-8 order-1 lg:order-1">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-0">
+          {/* Left Column - Product Info & Features - Dark Background */}
+          <div className="space-y-8 order-1 lg:order-1 bg-gray-900 lg:rounded-l-3xl p-8 lg:p-12">
             {/* Pricing Box - Similar to Checkout Box */}
-            <div className="bg-white/90 backdrop-blur-sm rounded-3xl shadow-2xl border border-gray-200">
-              <div className="border-b border-gray-200 p-4">
+            <div className="bg-gray-800/90 backdrop-blur-sm rounded-3xl shadow-2xl border border-gray-700">
+              <div className="border-b border-gray-700 p-4">
                 <div className="flex items-center justify-between">
                   <div>
-                    <h2 className="text-xl font-bold text-gray-900 mb-1">
+                    <h2 className="text-xl font-bold text-white mb-1">
                       Passion Product Formula
                     </h2>
-                    <p className="text-sm text-gray-600">
+                    <p className="text-sm text-gray-400">
                       {pricingOption === 'lifetime' ? 'Lifetime Access' : 'Monthly Subscription'}
                     </p>
                   </div>
                   <div className="text-right">
                     <div className="inline-flex items-baseline space-x-1">
-                      <span className="text-3xl font-bold text-gray-900">
+                      <span className="text-3xl font-bold text-white">
                         {pricingOption === 'subscription' ? '$299.99' : '$997'}
                       </span>
                       {pricingOption === 'subscription' && (
-                        <span className="text-base font-semibold text-gray-700">/month</span>
+                        <span className="text-base font-semibold text-gray-300">/month</span>
                       )}
                     </div>
-                    <div className="text-xs text-gray-600 mt-1">
+                    <div className="text-xs text-gray-400 mt-1">
                       {pricingOption === 'lifetime' ? 'One-time payment' : 'Cancel anytime • Monthly billing'}
                     </div>
                   </div>
@@ -97,14 +97,14 @@ const MainCheckoutPage: React.FC<MainCheckoutPageProps> = () => {
               
               {/* Bonus Item for Lifetime */}
               {pricingOption === 'lifetime' && (
-                <div className="p-4 bg-gradient-to-r from-orange-50 to-yellow-50 border-t border-orange-200">
+                <div className="p-4 bg-gradient-to-r from-orange-600/20 to-yellow-600/20 border-t border-orange-500/30">
                   <div className="flex items-center space-x-3">
-                    <div className="bg-orange-100 p-2 rounded-lg">
-                      <CheckCircle className="w-5 h-5 text-orange-600" />
+                    <div className="bg-orange-500/20 p-2 rounded-lg">
+                      <CheckCircle className="w-5 h-5 text-orange-400" />
                     </div>
                     <div>
-                      <div className="text-sm font-bold text-orange-900">Bonus: 2 Free 1 on 1 Coaching Sessions</div>
-                      <div className="text-xs text-orange-700">Personalized coaching with Travis or a certified coach</div>
+                      <div className="text-sm font-bold text-orange-300">Bonus: 2 Free 1 on 1 Coaching Sessions</div>
+                      <div className="text-xs text-orange-200">Personalized coaching with Travis or a certified coach</div>
                     </div>
                   </div>
                 </div>
@@ -113,7 +113,7 @@ const MainCheckoutPage: React.FC<MainCheckoutPageProps> = () => {
 
             {/* Video Section */}
             <div className="mb-6">
-              <h2 className="text-xl font-bold text-gray-900 mb-4">
+              <h2 className="text-xl font-bold text-white mb-4">
                 Watch How This Program Works
               </h2>
               <div className="relative aspect-video bg-black rounded-2xl overflow-hidden shadow-2xl">
@@ -127,8 +127,8 @@ const MainCheckoutPage: React.FC<MainCheckoutPageProps> = () => {
               </div>
             </div>
 
-            {/* Checkout Form - Mobile Only */}
-            <div className="lg:hidden">
+            {/* Checkout Form - Mobile Only - Keep white for mobile */}
+            <div className="lg:hidden bg-white rounded-3xl p-6 shadow-2xl border border-gray-200">
               {/* Spots Left Urgency - Mobile */}
               <div className="mb-4 bg-red-50 border-2 border-red-400 rounded-xl p-3 shadow-lg">
                 <div className="flex items-center justify-between mb-2">
@@ -269,67 +269,67 @@ const MainCheckoutPage: React.FC<MainCheckoutPageProps> = () => {
 
             {/* Program Features */}
             <div className="space-y-4">
-              <h3 className="text-xl font-bold text-gray-900 mb-5">
+              <h3 className="text-xl font-bold text-white mb-5">
                 What You Get:
               </h3>
               
               <div className="space-y-4">
-                <div className="bg-white/80 backdrop-blur-sm border border-gray-200 rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300">
+                <div className="bg-gray-800/80 backdrop-blur-sm border border-gray-700 rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300">
                   <div className="flex items-start space-x-4">
-                    <div className="bg-blue-100 p-3 rounded-xl">
-                      <BookOpen className="w-6 h-6 text-blue-600" />
+                    <div className="bg-blue-500/20 p-3 rounded-xl">
+                      <BookOpen className="w-6 h-6 text-blue-400" />
                     </div>
                     <div>
-                      <h4 className="font-bold text-gray-900 mb-2">117 Step By Step Video Lessons</h4>
-                      <p className="text-gray-600 leading-relaxed">Comprehensive videos guide you through every phase of starting an Amazon business.</p>
+                      <h4 className="font-bold text-white mb-2">117 Step By Step Video Lessons</h4>
+                      <p className="text-gray-300 leading-relaxed">Comprehensive videos guide you through every phase of starting an Amazon business.</p>
                     </div>
                   </div>
                 </div>
 
-                <div className="bg-white/80 backdrop-blur-sm border border-gray-200 rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300">
+                <div className="bg-gray-800/80 backdrop-blur-sm border border-gray-700 rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300">
                   <div className="flex items-start space-x-4">
-                    <div className="bg-green-100 p-3 rounded-xl">
-                      <Calendar className="w-6 h-6 text-green-600" />
+                    <div className="bg-green-500/20 p-3 rounded-xl">
+                      <Calendar className="w-6 h-6 text-green-400" />
                     </div>
                     <div>
-                      <h4 className="font-bold text-gray-900 mb-2">Continuous Weekly Q&A Calls</h4>
-                      <p className="text-gray-600 leading-relaxed">Ongoing support through live weekly sessions to answer your questions.</p>
+                      <h4 className="font-bold text-white mb-2">Continuous Weekly Q&A Calls</h4>
+                      <p className="text-gray-300 leading-relaxed">Ongoing support through live weekly sessions to answer your questions.</p>
                     </div>
                   </div>
                 </div>
 
-                <div className="bg-white/80 backdrop-blur-sm border border-gray-200 rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300">
+                <div className="bg-gray-800/80 backdrop-blur-sm border border-gray-700 rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300">
                   <div className="flex items-start space-x-4">
-                    <div className="bg-purple-100 p-3 rounded-xl">
-                      <Users className="w-6 h-6 text-purple-600" />
+                    <div className="bg-purple-500/20 p-3 rounded-xl">
+                      <Users className="w-6 h-6 text-purple-400" />
                     </div>
                     <div>
-                      <h4 className="font-bold text-gray-900 mb-2">Private Facebook Mastermind Membership</h4>
-                      <p className="text-gray-600 leading-relaxed">Access to an exclusive community for networking and support.</p>
+                      <h4 className="font-bold text-white mb-2">Private Facebook Mastermind Membership</h4>
+                      <p className="text-gray-300 leading-relaxed">Access to an exclusive community for networking and support.</p>
                     </div>
                   </div>
                 </div>
 
-                <div className="bg-white/80 backdrop-blur-sm border border-gray-200 rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300">
+                <div className="bg-gray-800/80 backdrop-blur-sm border border-gray-700 rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300">
                   <div className="flex items-start space-x-4">
-                    <div className="bg-orange-100 p-3 rounded-xl">
-                      <CheckCircle className="w-6 h-6 text-orange-600" />
+                    <div className="bg-orange-500/20 p-3 rounded-xl">
+                      <CheckCircle className="w-6 h-6 text-orange-400" />
                     </div>
                     <div>
-                      <h4 className="font-bold text-gray-900 mb-2">2 Free 1 on 1 Coaching Sessions</h4>
-                      <p className="text-gray-600 leading-relaxed">Personalized coaching with Travis or a certified coach.</p>
+                      <h4 className="font-bold text-white mb-2">2 Free 1 on 1 Coaching Sessions</h4>
+                      <p className="text-gray-300 leading-relaxed">Personalized coaching with Travis or a certified coach.</p>
                     </div>
                   </div>
                 </div>
 
-                <div className="bg-white/80 backdrop-blur-sm border border-gray-200 rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300">
+                <div className="bg-gray-800/80 backdrop-blur-sm border border-gray-700 rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300">
                   <div className="flex items-start space-x-4">
-                    <div className="bg-red-100 p-3 rounded-xl">
-                      <MessageCircle className="w-6 h-6 text-red-600" />
+                    <div className="bg-red-500/20 p-3 rounded-xl">
+                      <MessageCircle className="w-6 h-6 text-red-400" />
                     </div>
                     <div>
-                      <h4 className="font-bold text-gray-900 mb-2">2000+ Question Q&A Database</h4>
-                      <p className="text-gray-600 leading-relaxed">Access a library of answered questions to troubleshoot your business.</p>
+                      <h4 className="font-bold text-white mb-2">2000+ Question Q&A Database</h4>
+                      <p className="text-gray-300 leading-relaxed">Access a library of answered questions to troubleshoot your business.</p>
                     </div>
                   </div>
                 </div>
@@ -339,92 +339,92 @@ const MainCheckoutPage: React.FC<MainCheckoutPageProps> = () => {
             {/* Testimonials */}
             <div className="space-y-5">
               <div className="text-center lg:text-left mb-5">
-                <h3 className="text-xl font-bold text-gray-900 mb-1">
+                <h3 className="text-xl font-bold text-white mb-1">
                   Success Stories
                 </h3>
-                <p className="text-sm text-gray-600">Real results from our students</p>
+                <p className="text-sm text-gray-400">Real results from our students</p>
               </div>
               
-              <div className="bg-gradient-to-br from-white to-blue-50 border-2 border-blue-200 rounded-2xl p-8 shadow-xl hover:shadow-2xl transition-shadow">
+              <div className="bg-gradient-to-br from-gray-800 to-gray-700 border-2 border-blue-500/30 rounded-2xl p-8 shadow-xl hover:shadow-2xl transition-shadow">
                 <div className="flex items-center justify-between mb-4">
                   <div className="flex space-x-1">
                     {[...Array(5)].map((_, i) => (
                       <Star key={i} className="w-5 h-5 text-yellow-400 fill-current" />
                     ))}
                   </div>
-                  <div className="bg-green-100 text-green-800 text-xs font-bold px-3 py-1 rounded-full">
+                  <div className="bg-green-500/20 text-green-300 text-xs font-bold px-3 py-1 rounded-full border border-green-500/30">
                     $100K/Month
                   </div>
                 </div>
-                <blockquote className="text-gray-800 mb-6 leading-relaxed text-lg font-medium">
-                  "I'm currently doing <strong>$100,000 a month</strong> selling my Passion Product on Amazon and a big part of my success is thanks to Travis and this course. This course is the perfect starting program out there and will get you selling on Amazon in months if you take it seriously as I did."
+                <blockquote className="text-gray-200 mb-6 leading-relaxed text-lg font-medium">
+                  "I'm currently doing <strong className="text-white">$100,000 a month</strong> selling my Passion Product on Amazon and a big part of my success is thanks to Travis and this course. This course is the perfect starting program out there and will get you selling on Amazon in months if you take it seriously as I did."
                 </blockquote>
                 <div className="flex items-center justify-between">
-                  <cite className="text-base font-bold text-gray-900">- Mina</cite>
-                  <span className="text-xs text-gray-500">Verified Student</span>
+                  <cite className="text-base font-bold text-white">- Mina</cite>
+                  <span className="text-xs text-gray-400">Verified Student</span>
                 </div>
               </div>
 
-              <div className="bg-gradient-to-br from-white to-green-50 border-2 border-green-200 rounded-2xl p-8 shadow-xl hover:shadow-2xl transition-shadow">
+              <div className="bg-gradient-to-br from-gray-800 to-gray-700 border-2 border-green-500/30 rounded-2xl p-8 shadow-xl hover:shadow-2xl transition-shadow">
                 <div className="flex items-center justify-between mb-4">
                   <div className="flex space-x-1">
                     {[...Array(5)].map((_, i) => (
                       <Star key={i} className="w-5 h-5 text-yellow-400 fill-current" />
                     ))}
                   </div>
-                  <div className="bg-blue-100 text-blue-800 text-xs font-bold px-3 py-1 rounded-full">
+                  <div className="bg-blue-500/20 text-blue-300 text-xs font-bold px-3 py-1 rounded-full border border-blue-500/30">
                     $2K/Month Profit
                   </div>
                 </div>
-                <blockquote className="text-gray-800 mb-6 leading-relaxed text-lg font-medium">
-                  "I have been selling on Amazon for 6 months already and I can't recommend this course more. It taught me everything I have needed to create my product and sell it on Amazon. I love tennis so I decided to create a product around the sport and now I am making an extra <strong>$2,000 a month profit</strong> from selling something I'm passionate about!"
+                <blockquote className="text-gray-200 mb-6 leading-relaxed text-lg font-medium">
+                  "I have been selling on Amazon for 6 months already and I can't recommend this course more. It taught me everything I have needed to create my product and sell it on Amazon. I love tennis so I decided to create a product around the sport and now I am making an extra <strong className="text-white">$2,000 a month profit</strong> from selling something I'm passionate about!"
                 </blockquote>
                 <div className="flex items-center justify-between">
-                  <cite className="text-base font-bold text-gray-900">- Troy</cite>
-                  <span className="text-xs text-gray-500">Verified Student</span>
+                  <cite className="text-base font-bold text-white">- Troy</cite>
+                  <span className="text-xs text-gray-400">Verified Student</span>
                 </div>
               </div>
             </div>
 
             {/* Trust Indicators */}
-            <div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl p-6 border border-blue-200">
-              <h3 className="text-lg font-bold text-blue-900 mb-4">
+            <div className="bg-gradient-to-r from-gray-800 to-gray-700 rounded-xl p-6 border border-blue-500/30">
+              <h3 className="text-lg font-bold text-white mb-4">
                 Why Choose Passion Product Formula?
               </h3>
               <div className="space-y-4">
                 <div className="flex items-start space-x-4">
-                  <div className="bg-blue-100 p-2 rounded-lg">
-                    <CheckCircle className="w-5 h-5 text-blue-600" />
+                  <div className="bg-blue-500/20 p-2 rounded-lg">
+                    <CheckCircle className="w-5 h-5 text-blue-400" />
                   </div>
                   <div>
-                    <p className="font-semibold text-blue-900">Proven System</p>
-                    <p className="text-sm text-blue-700">Travis's 8-year proven system that has helped hundreds of students</p>
+                    <p className="font-semibold text-white">Proven System</p>
+                    <p className="text-sm text-gray-300">Travis's 8-year proven system that has helped hundreds of students</p>
                   </div>
                 </div>
                 <div className="flex items-start space-x-4">
-                  <div className="bg-blue-100 p-2 rounded-lg">
-                    <Clock className="w-5 h-5 text-blue-600" />
+                  <div className="bg-blue-500/20 p-2 rounded-lg">
+                    <Clock className="w-5 h-5 text-blue-400" />
                   </div>
                   <div>
-                    <p className="font-semibold text-blue-900">Live Support</p>
-                    <p className="text-sm text-blue-700">Weekly Q&A calls and 1-on-1 coaching sessions</p>
+                    <p className="font-semibold text-white">Live Support</p>
+                    <p className="text-sm text-gray-300">Weekly Q&A calls and 1-on-1 coaching sessions</p>
                   </div>
                 </div>
                 <div className="flex items-start space-x-4">
-                  <div className="bg-blue-100 p-2 rounded-lg">
-                    <Shield className="w-5 h-5 text-blue-600" />
+                  <div className="bg-blue-500/20 p-2 rounded-lg">
+                    <Shield className="w-5 h-5 text-blue-400" />
                   </div>
                   <div>
-                    <p className="font-semibold text-blue-900">Risk-Free Guarantee</p>
-                    <p className="text-sm text-blue-700">14-day money-back guarantee with no questions asked</p>
+                    <p className="font-semibold text-white">Risk-Free Guarantee</p>
+                    <p className="text-sm text-gray-300">14-day money-back guarantee with no questions asked</p>
                   </div>
                 </div>
               </div>
             </div>
           </div>
 
-          {/* Right Column - Checkout (Desktop Only) */}
-          <div className="lg:col-span-1 order-2 lg:order-2 hidden lg:block">
+          {/* Right Column - Checkout (Desktop Only) - White Background */}
+          <div className="lg:col-span-1 order-2 lg:order-2 hidden lg:block bg-white lg:rounded-r-3xl p-8 lg:p-12">
             {/* Spots Left Urgency - Desktop */}
             <div className="mb-4 bg-red-50 border-2 border-red-400 rounded-xl p-4 shadow-lg">
               <div className="flex items-center justify-between mb-2">
@@ -448,7 +448,7 @@ const MainCheckoutPage: React.FC<MainCheckoutPageProps> = () => {
               </div>
             </div>
 
-            <div className="bg-white/90 backdrop-blur-sm rounded-3xl shadow-2xl border border-gray-200">
+            <div className="bg-white rounded-3xl shadow-2xl border border-gray-200">
               {/* Checkout Header */}
               <div className="border-b border-gray-200 p-4">
                 <h2 className="text-2xl font-bold text-gray-900 mb-2">
