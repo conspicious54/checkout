@@ -1,5 +1,5 @@
 import React from 'react';
-import { CheckCircle, Mail, FileText, Calendar, Users, MessageCircle, UserCheck, Video, HelpCircle, ArrowRight } from 'lucide-react';
+import { CheckCircle, Mail, FileText, Calendar, Users, MessageCircle, UserCheck, Video, HelpCircle, ArrowRight, ExternalLink } from 'lucide-react';
 
 interface CompletedPurchasePageProps {
   // No props needed
@@ -53,9 +53,30 @@ const CompletedPurchasePage: React.FC<CompletedPurchasePageProps> = () => {
               </p>
               <div className="bg-purple-50 border border-purple-200 rounded-lg p-4 mt-4">
                 <p className="text-sm text-purple-900 font-semibold mb-2">Get Your Checklist</p>
-                <p className="text-sm text-purple-800">
+                <p className="text-sm text-purple-800 mb-3">
                   We created a step-by-step checklist. We recommend using this and going through step by step, finishing each task before you move on to the next. You'll need to make a copy of it to be able to edit it and properly use it.
                 </p>
+                <a 
+                  href="https://drive.google.com/file/d/1tEcrLMmWbPzXf3AtC5_y0r3idd2EfIWI/view" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center space-x-2 text-sm text-purple-700 hover:text-purple-900 font-semibold underline"
+                >
+                  <span>Get Your Checklist</span>
+                  <ExternalLink className="w-4 h-4" />
+                </a>
+              </div>
+              <div className="mt-4">
+                <a 
+                  href="https://docs.google.com/forms/d/e/1FAIpQLSfI6bvYn2_zcliC1zD__He5ZSJXasEfBCicBSVeNl-QNT7AsA/viewform?usp=sf_link&urp=gmail_link" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center space-x-2 bg-purple-600 hover:bg-purple-700 text-white font-semibold px-6 py-3 rounded-lg transition-colors shadow-md"
+                >
+                  <FileText className="w-5 h-5" />
+                  <span>Fill Out Initial Questionnaire</span>
+                  <ExternalLink className="w-4 h-4" />
+                </a>
               </div>
             </div>
           </div>
@@ -74,12 +95,43 @@ const CompletedPurchasePage: React.FC<CompletedPurchasePageProps> = () => {
               </p>
               <div className="bg-green-50 border border-green-200 rounded-lg p-4 mt-4">
                 <p className="text-sm text-green-900 font-semibold mb-2">Important Notes:</p>
-                <ul className="text-sm text-green-800 space-y-1 list-disc list-inside">
+                <ul className="text-sm text-green-800 space-y-1 list-disc list-inside mb-3">
                   <li>The date and time for the calls may change every few months</li>
                   <li>The calls will be recorded so you can watch at your convenience</li>
                   <li>You can ask questions via Google form if you can't make it live</li>
                   <li>Please check the Help Section in the course first to make sure your question hasn't already been answered</li>
                 </ul>
+                <div className="space-y-2">
+                  <a 
+                    href="https://www.passionproductformula.com/products/passion-product-formula/categories/3386051/posts/11305780?cid=fc9c24f2-6439-4403-83e9-36034fd1cb45" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center space-x-2 text-sm text-green-700 hover:text-green-900 font-semibold underline"
+                  >
+                    <span>How to Join the Weekly Q&A Call</span>
+                    <ExternalLink className="w-4 h-4" />
+                  </a>
+                  <br />
+                  <a 
+                    href="https://docs.google.com/forms/d/e/1FAIpQLScE9wFRzNqfphpEbg81J6-55--SMfAXXd2WQ3XPZ8kEtsUdag/viewform?usp=send_form&urp=gmail_link" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center space-x-2 text-sm text-green-700 hover:text-green-900 font-semibold underline"
+                  >
+                    <span>Ask a Q&A Question</span>
+                    <ExternalLink className="w-4 h-4" />
+                  </a>
+                  <br />
+                  <a 
+                    href="https://www.passionproductformula.com/products/passion-product-formula/categories/3386051/posts/11305780?cid=fc9c24f2-6439-4403-83e9-36034fd1cb45" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center space-x-2 text-sm text-green-700 hover:text-green-900 font-semibold underline"
+                  >
+                    <span>Q&A Call Rules</span>
+                    <ExternalLink className="w-4 h-4" />
+                  </a>
+                </div>
               </div>
             </div>
           </div>
@@ -98,15 +150,36 @@ const CompletedPurchasePage: React.FC<CompletedPurchasePageProps> = () => {
               </p>
               <div className="bg-orange-50 border border-orange-200 rounded-lg p-4 mt-4">
                 <p className="text-sm text-orange-900 font-semibold mb-2">Why This Matters:</p>
-                <ul className="text-sm text-orange-800 space-y-1 list-disc list-inside">
+                <ul className="text-sm text-orange-800 space-y-1 list-disc list-inside mb-3">
                   <li>Share your ideas, logos, websites, and get feedback</li>
                   <li>Connect with students who specialize in areas like Kickstarter, Google Ads, Facebook</li>
                   <li>Post updates at least once a month to maximize your results</li>
                   <li>The more you put into the group, the more you'll get out of it</li>
                 </ul>
+                <div className="space-y-2">
+                  <a 
+                    href="https://www.facebook.com/groups/885710388131937/" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center space-x-2 text-sm text-orange-700 hover:text-orange-900 font-semibold underline"
+                  >
+                    <span>Join Private Facebook Group</span>
+                    <ExternalLink className="w-4 h-4" />
+                  </a>
+                  <br />
+                  <a 
+                    href="https://passion-product-formula.mn.co/sign_up?auto_join=true&from=https%3A%2F%2Fpassion-product-formula.mn.co%2F%3Fautojoin%3D1&space_id=20448995" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center space-x-2 text-sm text-orange-700 hover:text-orange-900 font-semibold underline"
+                  >
+                    <span>Join The Passion Product Community</span>
+                    <ExternalLink className="w-4 h-4" />
+                  </a>
+                </div>
               </div>
               <p className="text-gray-600 text-sm mt-3 italic">
-                Note: Travis gets a lot of messages, so the Facebook group and community are the best ways to reach him. For private questions, email travis@passionproduct.com, but please understand emails are usually checked once a week.
+                Note: Travis gets a lot of messages, so the Facebook group and community are the best ways to reach him. For private questions, email <a href="mailto:travis@passionproduct.com" className="text-blue-600 hover:text-blue-800 underline">travis@passionproduct.com</a>, but please understand emails are usually checked once a week.
               </p>
             </div>
           </div>
@@ -126,6 +199,17 @@ const CompletedPurchasePage: React.FC<CompletedPurchasePageProps> = () => {
               <p className="text-gray-700 leading-relaxed mb-3">
                 <strong>Recommended:</strong> Go through Module 0 and at least complete your Outcome Purpose Action plan before your first weekly Q+A call. After you do that, you'll fill out a form and we can assign you an accountability buddy!
               </p>
+              <div className="mt-4">
+                <a 
+                  href="https://www.passionproductformula.com/products/passion-product-formula/categories/2958391/posts/9880760?cid=fc9c24f2-6439-4403-83e9-36034fd1cb45" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center space-x-2 text-sm text-indigo-700 hover:text-indigo-900 font-semibold underline"
+                >
+                  <span>Learn About Outcome Purpose Action</span>
+                  <ExternalLink className="w-4 h-4" />
+                </a>
+              </div>
             </div>
           </div>
         </div>
@@ -150,9 +234,18 @@ const CompletedPurchasePage: React.FC<CompletedPurchasePageProps> = () => {
                   <li>Think of it as a study group for accountability and support</li>
                 </ul>
               </div>
-              <p className="text-gray-700 leading-relaxed mt-3">
+              <p className="text-gray-700 leading-relaxed mt-3 mb-4">
                 <strong>The people who had much success are those who took advantage of these communities, so we strongly recommend this!</strong>
               </p>
+              <a 
+                href="https://www.passionproductformula.com/products/passion-product-formula/categories/3120106/posts/10472189?cid=fc9c24f2-6439-4403-83e9-36034fd1cb45" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="inline-flex items-center space-x-2 text-sm text-pink-700 hover:text-pink-900 font-semibold underline"
+              >
+                <span>Find Out How to Join a Mastermind Group</span>
+                <ExternalLink className="w-4 h-4" />
+              </a>
             </div>
           </div>
         </div>
@@ -223,7 +316,7 @@ const CompletedPurchasePage: React.FC<CompletedPurchasePageProps> = () => {
                     <ArrowRight className="w-4 h-4 text-gray-600" />
                   </div>
                   <div>
-                    <p className="font-semibold text-gray-900">Third Option: Email travis@effectiveecommerce.com</p>
+                    <p className="font-semibold text-gray-900">Third Option: Email <a href="mailto:travis@passionproduct.com" className="text-blue-600 hover:text-blue-800 underline">travis@passionproduct.com</a></p>
                     <p className="text-sm text-gray-600">Please note: Emails are usually checked once a week on Thursdays</p>
                   </div>
                 </div>
