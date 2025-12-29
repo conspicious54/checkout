@@ -401,7 +401,7 @@ const MainCheckoutPage: React.FC<MainCheckoutPageProps> = () => {
                     <h4 className="text-sm font-black text-orange-900">$1,000 Profit Guarantee</h4>
                   </div>
                   <p className="text-xs text-orange-900 leading-relaxed">
-                    Not profitable enough in year 1? We'll give you $1,000.
+                    If you follow all of the steps in the program and don't make at least $1,000 selling on Amazon in the first year, we will pay you $1,000.
                   </p>
                 </div>
               </div>
@@ -819,7 +819,7 @@ const MainCheckoutPage: React.FC<MainCheckoutPageProps> = () => {
                   <h4 className="text-sm font-black text-orange-900">$1,000 Profit Guarantee</h4>
                 </div>
                 <p className="text-xs text-orange-900 leading-relaxed">
-                  Not profitable enough in year 1? We'll give you $1,000.
+                  If you follow all of the steps in the program and don't make at least $1,000 selling on Amazon in the first year, we will pay you $1,000.
                 </p>
               </div>
             </div>
