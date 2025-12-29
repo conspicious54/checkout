@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Shield, Clock, CheckCircle, Star, Loader, Users, BookOpen, Calendar, MessageCircle, Award, Zap, TrendingUp } from 'lucide-react';
+import { Shield, Clock, CheckCircle, Star, Loader, Users, BookOpen, Calendar, MessageCircle, Award, Zap, TrendingUp, X } from 'lucide-react';
 import { WhopCheckoutEmbed } from "@whop/react/checkout";
 
 interface MainCheckoutPageProps {
@@ -12,6 +12,7 @@ const MainCheckoutPage: React.FC<MainCheckoutPageProps> = () => {
   const [spotsLeft, setSpotsLeft] = useState(3); // Starting with 3 spots left out of 10
   const TOTAL_SPOTS = 10;
   const [currentTestimonial, setCurrentTestimonial] = useState(0);
+  const [showPopup, setShowPopup] = useState(false);
 
   // Social proof testimonials
   const testimonials = [
@@ -52,14 +53,36 @@ const MainCheckoutPage: React.FC<MainCheckoutPageProps> = () => {
     return () => clearInterval(spotsTimer);
   }, []);
 
-  // Rotate testimonials
+  // Show popup occasionally
   useEffect(() => {
-    const testimonialTimer = setInterval(() => {
-      setCurrentTestimonial((prev) => (prev + 1) % 5); // 5 testimonials
-    }, 5000); // Change every 5 seconds
+    // Show first popup after 10 seconds
+    const initialTimer = setTimeout(() => {
+      setShowPopup(true);
+      setCurrentTestimonial(Math.floor(Math.random() * 5));
+    }, 10000);
 
-    return () => clearInterval(testimonialTimer);
+    // Then show popup every 25-35 seconds
+    const popupInterval = setInterval(() => {
+      setCurrentTestimonial(Math.floor(Math.random() * 5));
+      setShowPopup(true);
+    }, 30000); // Every 30 seconds
+
+    return () => {
+      clearTimeout(initialTimer);
+      clearInterval(popupInterval);
+    };
   }, []);
+
+  // Auto-hide popup after 7 seconds
+  useEffect(() => {
+    if (showPopup) {
+      const hideTimer = setTimeout(() => {
+        setShowPopup(false);
+      }, 7000); // Show for 7 seconds
+
+      return () => clearTimeout(hideTimer);
+    }
+  }, [showPopup]);
 
   const formatTime = (seconds: number) => {
     const minutes = Math.floor(seconds / 60);
@@ -680,79 +703,39 @@ const MainCheckoutPage: React.FC<MainCheckoutPageProps> = () => {
         </div>
       </div>
 
-      {/* Social Proof Slider - Bottom */}
-      <div className="fixed bottom-0 left-0 right-0 bg-white/95 backdrop-blur-sm border-t border-gray-200 shadow-lg z-50 lg:hidden">
-        <div className="max-w-md mx-auto px-4 py-3">
-          <div className="flex items-center space-x-3 animate-in slide-in-from-bottom">
-            <div className="flex-shrink-0">
-              <img 
-                src={testimonials[currentTestimonial].image} 
-                alt={testimonials[currentTestimonial].name}
-                className="w-12 h-12 rounded-full border-2 border-blue-500"
-              />
-            </div>
-            <div className="flex-1 min-w-0">
-              <p className="text-sm font-semibold text-gray-900">
-                {testimonials[currentTestimonial].name}
-              </p>
-              <p className="text-xs text-gray-600">
-                launched on Amazon {testimonials[currentTestimonial].daysAgo} days ago and just passed ${testimonials[currentTestimonial].amount.toLocaleString()}
-              </p>
-            </div>
-            <div className="flex-shrink-0">
-              <div className="flex space-x-1">
-                {testimonials.map((_, index) => (
+      {/* Social Proof Popup */}
+      {showPopup && (
+        <div className="fixed bottom-4 right-4 lg:right-8 z-50 animate-in slide-in-from-bottom-4 fade-in duration-300">
+          <div className="bg-white rounded-xl shadow-2xl border border-gray-200 p-4 max-w-sm w-[calc(100vw-2rem)] lg:w-auto">
+            <div className="flex items-start space-x-3">
+              <div className="flex-shrink-0">
+                <img 
+                  src={testimonials[currentTestimonial].image} 
+                  alt={testimonials[currentTestimonial].name}
+                  className="w-12 h-12 rounded-full border-2 border-blue-500"
+                />
+              </div>
+              <div className="flex-1 min-w-0">
+                <div className="flex items-start justify-between mb-1">
+                  <p className="text-sm font-semibold text-gray-900">
+                    {testimonials[currentTestimonial].name}
+                  </p>
                   <button
-                    key={index}
-                    onClick={() => setCurrentTestimonial(index)}
-                    className={`w-1.5 h-1.5 rounded-full transition-all ${
-                      index === currentTestimonial ? 'bg-blue-500 w-4' : 'bg-gray-300'
-                    }`}
-                    aria-label={`Go to testimonial ${index + 1}`}
-                  />
-                ))}
+                    onClick={() => setShowPopup(false)}
+                    className="flex-shrink-0 text-gray-400 hover:text-gray-600 transition-colors ml-2"
+                    aria-label="Close notification"
+                  >
+                    <X className="w-4 h-4" />
+                  </button>
+                </div>
+                <p className="text-xs text-gray-600 leading-relaxed">
+                  launched on Amazon {testimonials[currentTestimonial].daysAgo} days ago and just passed <span className="font-semibold text-green-600">${testimonials[currentTestimonial].amount.toLocaleString()}</span>
+                </p>
               </div>
             </div>
           </div>
         </div>
-      </div>
-
-      {/* Social Proof Slider - Desktop (Right Side) */}
-      <div className="hidden lg:block fixed bottom-0 right-0 w-1/2 bg-white/95 backdrop-blur-sm border-t border-gray-200 shadow-lg z-50">
-        <div className="max-w-md mx-auto px-4 py-3">
-          <div className="flex items-center space-x-3">
-            <div className="flex-shrink-0">
-              <img 
-                src={testimonials[currentTestimonial].image} 
-                alt={testimonials[currentTestimonial].name}
-                className="w-12 h-12 rounded-full border-2 border-blue-500"
-              />
-            </div>
-            <div className="flex-1 min-w-0">
-              <p className="text-sm font-semibold text-gray-900">
-                {testimonials[currentTestimonial].name}
-              </p>
-              <p className="text-xs text-gray-600">
-                launched on Amazon {testimonials[currentTestimonial].daysAgo} days ago and just passed ${testimonials[currentTestimonial].amount.toLocaleString()}
-              </p>
-            </div>
-            <div className="flex-shrink-0">
-              <div className="flex space-x-1">
-                {testimonials.map((_, index) => (
-                  <button
-                    key={index}
-                    onClick={() => setCurrentTestimonial(index)}
-                    className={`w-1.5 h-1.5 rounded-full transition-all ${
-                      index === currentTestimonial ? 'bg-blue-500 w-4' : 'bg-gray-300'
-                    }`}
-                    aria-label={`Go to testimonial ${index + 1}`}
-                  />
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+      )}
     </div>
   );
 };
