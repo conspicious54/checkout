@@ -49,9 +49,9 @@ const MainCheckoutPage: React.FC<MainCheckoutPageProps> = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen lg:h-screen lg:overflow-hidden flex flex-col">
       {/* Compact Spots Left Banner */}
-      <div className="bg-gradient-to-r from-red-600 to-orange-600 text-white py-2.5 shadow-md z-10">
+      <div className="bg-gradient-to-r from-red-600 to-orange-600 text-white py-2.5 shadow-md z-10 flex-shrink-0">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-center space-x-2">
             <Zap className="w-4 h-4 animate-pulse" />
@@ -64,9 +64,9 @@ const MainCheckoutPage: React.FC<MainCheckoutPageProps> = () => {
       </div>
 
       {/* Split Layout Container */}
-      <div className="flex-1 flex flex-col lg:flex-row lg:h-[calc(100vh-60px)] lg:overflow-hidden">
+      <div className="flex-1 flex flex-col lg:flex-row lg:min-h-0 lg:overflow-hidden">
         {/* Left Half - Full Dark Background */}
-        <div className="w-full lg:w-1/2 bg-gray-900 lg:overflow-y-auto lg:h-full">
+        <div className="w-full lg:w-1/2 bg-gray-900 lg:overflow-y-auto lg:min-h-0">
           <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 py-8 lg:py-12">
             <div className="space-y-8">
             {/* Pricing Box - Similar to Checkout Box */}
@@ -428,7 +428,7 @@ const MainCheckoutPage: React.FC<MainCheckoutPageProps> = () => {
         </div>
 
         {/* Right Half - Full White Background */}
-        <div className="w-full lg:w-1/2 bg-white lg:overflow-y-auto lg:h-full">
+        <div className="w-full lg:w-1/2 bg-white lg:overflow-y-auto lg:min-h-0">
           <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 py-8 lg:py-12">
             {/* Desktop Checkout Section */}
             <div className="hidden lg:block">
