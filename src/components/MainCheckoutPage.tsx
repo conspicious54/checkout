@@ -64,9 +64,9 @@ const MainCheckoutPage: React.FC<MainCheckoutPageProps> = () => {
       </div>
 
       {/* Split Layout Container */}
-      <div className="flex-1 flex flex-col lg:flex-row">
+      <div className="flex-1 flex flex-col lg:flex-row lg:h-[calc(100vh-60px)] lg:overflow-hidden">
         {/* Left Half - Full Dark Background */}
-        <div className="w-full lg:w-1/2 bg-gray-900 lg:min-h-screen">
+        <div className="w-full lg:w-1/2 bg-gray-900 lg:overflow-y-auto lg:h-full">
           <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 py-8 lg:py-12">
             <div className="space-y-8">
             {/* Pricing Box - Similar to Checkout Box */}
@@ -428,7 +428,7 @@ const MainCheckoutPage: React.FC<MainCheckoutPageProps> = () => {
         </div>
 
         {/* Right Half - Full White Background */}
-        <div className="w-full lg:w-1/2 bg-white">
+        <div className="w-full lg:w-1/2 bg-white lg:overflow-y-auto lg:h-full">
           <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 py-8 lg:py-12">
             {/* Desktop Checkout Section */}
             <div className="hidden lg:block">
