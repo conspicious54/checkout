@@ -91,7 +91,14 @@ const MainCheckoutPage: React.FC<MainCheckoutPageProps> = () => {
                       )}
                     </div>
                     <div className="text-xs text-gray-400 mt-1">
-                      {pricingOption === 'lifetime' ? 'One-time payment' : 'Cancel anytime • Monthly billing'}
+                      {pricingOption === 'lifetime' ? (
+                        <>
+                          One-time payment
+                          <span className="block text-green-400 font-semibold mt-0.5">Save $2,600+ vs monthly</span>
+                        </>
+                      ) : (
+                        'Cancel anytime • Monthly billing'
+                      )}
                     </div>
                   </div>
                 </div>
@@ -169,9 +176,13 @@ const MainCheckoutPage: React.FC<MainCheckoutPageProps> = () => {
                   <h2 className="text-2xl font-bold text-gray-900 mb-2">
                     Complete Your Purchase
                   </h2>
-                  <p className="text-gray-600 leading-relaxed">
+                  <p className="text-gray-600 leading-relaxed mb-2">
                     Secure your spot in the Passion Product Formula program today.
                   </p>
+                  <div className="flex items-center space-x-2 text-xs text-gray-500">
+                    <Users className="w-3.5 h-3.5 text-blue-500" />
+                    <span>Join 500+ students • Instant access</span>
+                  </div>
                 </div>
 
                 {/* Pricing Toggle - Mobile */}
@@ -516,9 +527,13 @@ const MainCheckoutPage: React.FC<MainCheckoutPageProps> = () => {
                 <h2 className="text-2xl font-bold text-gray-900 mb-2">
                   Complete Your Purchase
                 </h2>
-                <p className="text-gray-600 leading-relaxed">
+                <p className="text-gray-600 leading-relaxed mb-2">
                   Secure your spot in the Passion Product Formula program today.
                 </p>
+                <div className="flex items-center space-x-2 text-xs text-gray-500">
+                  <Users className="w-3.5 h-3.5 text-blue-500" />
+                  <span>Join 500+ students • Instant access</span>
+                </div>
               </div>
 
               {/* Pricing Toggle - Desktop */}
@@ -590,7 +605,7 @@ const MainCheckoutPage: React.FC<MainCheckoutPageProps> = () => {
 
             {/* Info Below Checkout - Desktop */}
             <div className="mt-5 space-y-3">
-              <div className="flex items-center justify-center space-x-3 text-xs">
+              <div className="flex items-center justify-center space-x-3 text-xs flex-wrap gap-2">
                 <div className="flex items-center space-x-1.5 text-red-600 bg-red-50 border border-red-200 px-3 py-1.5 rounded-full">
                   <Clock className="w-3.5 h-3.5" />
                   <span className="font-semibold">Reserved: {formatTime(timeLeft)}</span>
@@ -598,6 +613,10 @@ const MainCheckoutPage: React.FC<MainCheckoutPageProps> = () => {
                 <div className="flex items-center space-x-1.5 text-gray-700 bg-green-50 border border-green-200 px-3 py-1.5 rounded-full">
                   <Shield className="w-3.5 h-3.5 text-green-600" />
                   <span className="font-semibold">Secure</span>
+                </div>
+                <div className="flex items-center space-x-1.5 text-blue-600 bg-blue-50 border border-blue-200 px-3 py-1.5 rounded-full">
+                  <CheckCircle className="w-3.5 h-3.5" />
+                  <span className="font-semibold">7-Day Guarantee</span>
                 </div>
               </div>
               <div className="flex items-center justify-center space-x-2 text-xs text-gray-600">
