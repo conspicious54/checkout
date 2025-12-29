@@ -532,13 +532,34 @@ const MainCheckoutPage: React.FC<MainCheckoutPageProps> = () => {
 
             {/* Footer - Inside Left Half */}
             <div className="bg-gray-800/50 backdrop-blur-sm border-t border-gray-700 mt-8 pt-8">
+              {/* Legal Disclaimer */}
+              <div className="mb-6 p-4 bg-gray-800/80 rounded-lg border border-gray-700">
+                <p className="text-xs text-gray-400 leading-relaxed text-center">
+                  <strong className="text-gray-300">Disclaimer:</strong> Results are not guaranteed and individual results may vary. Any results shown are based on specific circumstances and the effort put forth by each individual. Your success depends on many factors including your dedication, effort, and circumstances. Past performance does not guarantee future results.
+                </p>
+              </div>
+              
               <div className="flex flex-col sm:flex-row items-center justify-between space-y-4 sm:space-y-0">
                 <div className="flex items-center space-x-4 text-sm text-gray-400">
                   <span>© 2025 Passion Product Formula</span>
                   <span>•</span>
-                  <a href="#" className="hover:text-gray-300 transition-colors">Privacy Policy</a>
+                  <a 
+                    href="https://www.passionproductformula.com/privacy-policy" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="hover:text-gray-300 transition-colors"
+                  >
+                    Privacy Policy
+                  </a>
                   <span>•</span>
-                  <a href="#" className="hover:text-gray-300 transition-colors">Terms of Service</a>
+                  <a 
+                    href="https://www.passionproductformula.com/terms-of-service" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="hover:text-gray-300 transition-colors"
+                  >
+                    Terms of Service
+                  </a>
                 </div>
                 <div className="flex items-center space-x-2 text-sm text-gray-400">
                   <Shield className="w-4 h-4" />
