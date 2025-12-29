@@ -49,9 +49,9 @@ const MainCheckoutPage: React.FC<MainCheckoutPageProps> = () => {
   };
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen flex flex-col">
       {/* Compact Spots Left Banner */}
-      <div className="bg-gradient-to-r from-red-600 to-orange-600 text-white py-2.5 shadow-md">
+      <div className="bg-gradient-to-r from-red-600 to-orange-600 text-white py-2.5 shadow-md z-10">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-center space-x-2">
             <Zap className="w-4 h-4 animate-pulse" />
@@ -63,10 +63,12 @@ const MainCheckoutPage: React.FC<MainCheckoutPageProps> = () => {
         </div>
       </div>
 
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-0">
-          {/* Left Column - Product Info & Features - Dark Background */}
-          <div className="space-y-8 order-1 lg:order-1 bg-gray-900 lg:rounded-l-3xl p-8 lg:p-12">
+      {/* Split Layout Container */}
+      <div className="flex-1 flex flex-col lg:flex-row">
+        {/* Left Half - Full Dark Background */}
+        <div className="w-full lg:w-1/2 bg-gray-900 lg:min-h-screen">
+          <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 py-8 lg:py-12">
+            <div className="space-y-8">
             {/* Pricing Box - Similar to Checkout Box */}
             <div className="bg-gray-800/90 backdrop-blur-sm rounded-3xl shadow-2xl border border-gray-700">
               <div className="border-b border-gray-700 p-4">
@@ -421,10 +423,15 @@ const MainCheckoutPage: React.FC<MainCheckoutPageProps> = () => {
                 </div>
               </div>
             </div>
+            </div>
           </div>
+        </div>
 
-          {/* Right Column - Checkout (Desktop Only) - White Background */}
-          <div className="lg:col-span-1 order-2 lg:order-2 hidden lg:block bg-white lg:rounded-r-3xl p-8 lg:p-12">
+        {/* Right Half - Full White Background */}
+        <div className="w-full lg:w-1/2 bg-white">
+          <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 py-8 lg:py-12">
+            {/* Desktop Checkout Section */}
+            <div className="hidden lg:block">
             {/* Spots Left Urgency - Desktop */}
             <div className="mb-4 bg-red-50 border-2 border-red-400 rounded-xl p-4 shadow-lg">
               <div className="flex items-center justify-between mb-2">
@@ -578,6 +585,7 @@ const MainCheckoutPage: React.FC<MainCheckoutPageProps> = () => {
                   Not profitable enough in year 1? We'll give you $1,000.
                 </p>
               </div>
+            </div>
             </div>
           </div>
         </div>
