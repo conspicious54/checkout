@@ -33,8 +33,11 @@ const CompletedPurchasePage: React.FC<CompletedPurchasePageProps> = () => {
               <p className="text-gray-700 leading-relaxed mb-3">
                 Look out for an email with the subject line <strong>"Welcome to the Course!"</strong> as well as an invitation to create your account.
               </p>
+              <p className="text-gray-700 leading-relaxed mb-3">
+                <strong>Important:</strong> You need to find this email because that's where you will make your login for the course to access the video modules. This email contains your account setup instructions and login information.
+              </p>
               <p className="text-gray-600 text-sm">
-                This email contains important information and your account setup instructions.
+                If you don't see the email, please check your spam/junk folder.
               </p>
             </div>
           </div>
