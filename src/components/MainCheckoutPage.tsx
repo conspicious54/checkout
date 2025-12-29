@@ -423,6 +423,23 @@ const MainCheckoutPage: React.FC<MainCheckoutPageProps> = () => {
                 </div>
               </div>
             </div>
+
+            {/* Footer - Inside Left Half */}
+            <div className="bg-gray-800/50 backdrop-blur-sm border-t border-gray-700 mt-8 pt-8">
+              <div className="flex flex-col sm:flex-row items-center justify-between space-y-4 sm:space-y-0">
+                <div className="flex items-center space-x-4 text-sm text-gray-400">
+                  <span>© 2025 Passion Product Formula</span>
+                  <span>•</span>
+                  <a href="#" className="hover:text-gray-300 transition-colors">Privacy Policy</a>
+                  <span>•</span>
+                  <a href="#" className="hover:text-gray-300 transition-colors">Terms of Service</a>
+                </div>
+                <div className="flex items-center space-x-2 text-sm text-gray-400">
+                  <Shield className="w-4 h-4" />
+                  <span>Powered by Whop - Secure Payment Processing</span>
+                </div>
+              </div>
+            </div>
             </div>
           </div>
         </div>
@@ -586,25 +603,6 @@ const MainCheckoutPage: React.FC<MainCheckoutPageProps> = () => {
                 </p>
               </div>
             </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Footer */}
-      <div className="bg-white/80 backdrop-blur-sm border-t border-gray-200 mt-20">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-          <div className="flex flex-col sm:flex-row items-center justify-between space-y-4 sm:space-y-0">
-            <div className="flex items-center space-x-4 text-sm text-gray-600">
-              <span>© 2025 Passion Product Formula</span>
-              <span>•</span>
-              <a href="#" className="hover:text-gray-900 transition-colors">Privacy Policy</a>
-              <span>•</span>
-              <a href="#" className="hover:text-gray-900 transition-colors">Terms of Service</a>
-            </div>
-            <div className="flex items-center space-x-2 text-sm text-gray-600">
-              <Shield className="w-4 h-4" />
-              <span>Powered by Whop - Secure Payment Processing</span>
             </div>
           </div>
         </div>
