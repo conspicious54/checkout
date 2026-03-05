@@ -591,7 +591,7 @@ const MainCheckoutPage: React.FC<MainCheckoutPageProps> = () => {
                   </div>
                   <div>
                     <p className="font-semibold text-white">Risk-Free Guarantee</p>
-                    <p className="text-sm text-gray-300">14-day money-back guarantee with no questions asked</p>
+                    <p className="text-sm text-gray-300">7-day money-back guarantee with no questions asked</p>
                   </div>
                 </div>
               </div>
@@ -730,8 +730,8 @@ const MainCheckoutPage: React.FC<MainCheckoutPageProps> = () => {
                     key={pricingOption === 'lifetime' ? (validatedProductIdea ? 'lifetime-validated' : 'lifetime') : 'subscription'}
                     planId={
                       pricingOption === 'lifetime' 
-                        ? (validatedProductIdea ? 'plan_nsKbk4iQTYNbw' : 'plan_KrBlX3ZaAFIGT')
-                        : 'plan_1l3co0swjIcbS'
+                        ? (validatedProductIdea ? 'plan_uK5qoLTwG0ws9' : 'plan_vqBzSMMfIxkDn')
+                        : 'plan_WALRqnodq9C1O'
                     }
                     theme="light"
                     hidePrice={true}

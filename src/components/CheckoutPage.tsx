@@ -340,7 +340,7 @@ const CheckoutPage: React.FC<CheckoutPageProps> = () => {
                   </div>
                   <div>
                     <p className="font-semibold text-blue-900">Risk-Free Guarantee</p>
-                    <p className="text-sm text-blue-700">14-day money-back guarantee with no questions asked</p>
+                    <p className="text-sm text-blue-700">7-day money-back guarantee with no questions asked</p>
                   </div>
                 </div>
               </div>
