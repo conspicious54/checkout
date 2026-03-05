@@ -104,7 +104,7 @@ const MainCheckoutPage: React.FC<MainCheckoutPageProps> = () => {
     const price = pricingOption === 'subscription'
       ? '$199/mo'
       : validatedProductIdea
-        ? '$1,494'
+        ? '$1,497'
         : '$497';
     document.title = `Passion Product Formula - ${price}`;
   }, [pricingOption, validatedProductIdea]);
@@ -154,7 +154,7 @@ const MainCheckoutPage: React.FC<MainCheckoutPageProps> = () => {
                         {pricingOption === 'subscription'
                           ? '$199'
                           : validatedProductIdea
-                            ? '$1,494'
+                            ? '$1,497'
                             : '$497'}
                       </span>
                       {pricingOption === 'subscription' && (
@@ -181,28 +181,30 @@ const MainCheckoutPage: React.FC<MainCheckoutPageProps> = () => {
               {pricingOption === 'lifetime' && (
                 <div className="p-4 border-t border-gray-700">
                   <div className="flex items-center justify-between">
-                    <div className="flex items-center space-x-2">
-                      <label className="flex items-center space-x-2 cursor-pointer">
-                        <div className="relative">
+                    <div className="flex items-center space-x-3">
+                      <label className="flex items-center space-x-3 cursor-pointer group">
+                        <div className="relative flex-shrink-0">
                           <input
                             type="checkbox"
                             checked={validatedProductIdea}
                             onChange={(e) => setValidatedProductIdea(e.target.checked)}
                             className="sr-only"
                           />
-                          <div className={`w-11 h-6 rounded-full transition-colors duration-200 ${
-                            validatedProductIdea ? 'bg-blue-500' : 'bg-gray-600'
+                          <div className={`w-12 h-7 rounded-full transition-all duration-300 ease-in-out ${
+                            validatedProductIdea ? 'bg-blue-500 shadow-[0_0_8px_rgba(59,130,246,0.5)]' : 'bg-gray-600'
                           }`}>
-                            <div className={`w-5 h-5 bg-white rounded-full shadow-md transform transition-transform duration-200 ${
-                              validatedProductIdea ? 'translate-x-5' : 'translate-x-0.5'
-                            } mt-0.5`}></div>
+                            <div className={`w-5 h-5 bg-white rounded-full shadow-lg transform transition-all duration-300 ease-in-out ${
+                              validatedProductIdea ? 'translate-x-[22px]' : 'translate-x-[3px]'
+                            } translate-y-[4px]`}></div>
                           </div>
                         </div>
-                        <span className="text-sm text-gray-300">Add A Validated Product Idea For $997</span>
+                        <span className={`text-sm transition-colors duration-200 ${
+                          validatedProductIdea ? 'text-white font-semibold' : 'text-gray-300'
+                        }`}>Add A Validated Product Idea For $997</span>
                       </label>
-                      <div className="group relative">
-                        <HelpCircle className="w-4 h-4 text-gray-400 hover:text-gray-300 cursor-help" />
-                        <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 w-64 p-3 bg-gray-800 border border-gray-700 rounded-lg shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-10">
+                      <div className="group/tooltip relative">
+                        <HelpCircle className="w-4 h-4 text-gray-400 hover:text-gray-300 cursor-help transition-colors" />
+                        <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 w-64 p-3 bg-gray-800 border border-gray-700 rounded-lg shadow-xl opacity-0 invisible group-hover/tooltip:opacity-100 group-hover/tooltip:visible transition-all duration-200 z-10">
                           <p className="text-xs text-gray-200 leading-relaxed">
                             <strong className="text-white">What is a Validated Product Idea?</strong> Travis and the team will take your interests and parameters (budget, timeline, etc...) and come up with a PDF presentation of 5-6 validated product ideas that we're confident are winners.
                           </p>
@@ -313,10 +315,41 @@ const MainCheckoutPage: React.FC<MainCheckoutPageProps> = () => {
                     >
                       <span className="absolute -top-2 right-1 bg-orange-500 text-white text-[10px] font-bold px-1.5 py-0.5 rounded-full">POPULAR</span>
                       Lifetime Access
-                      <span className="block text-xs font-normal mt-0.5">$497</span>
+                      <span className="block text-xs font-normal mt-0.5">{validatedProductIdea ? '$1,497' : '$497'}</span>
                     </button>
                   </div>
                 </div>
+
+                {/* Validated Product Idea Toggle - Mobile */}
+                {pricingOption === 'lifetime' && (
+                  <div className="p-4 border-b border-gray-200 bg-gradient-to-r from-blue-50 to-indigo-50">
+                    <div className="flex items-center space-x-3">
+                      <label className="flex items-center space-x-3 cursor-pointer">
+                        <div className="relative flex-shrink-0">
+                          <input
+                            type="checkbox"
+                            checked={validatedProductIdea}
+                            onChange={(e) => setValidatedProductIdea(e.target.checked)}
+                            className="sr-only"
+                          />
+                          <div className={`w-12 h-7 rounded-full transition-all duration-300 ease-in-out ${
+                            validatedProductIdea ? 'bg-blue-500 shadow-[0_0_8px_rgba(59,130,246,0.4)]' : 'bg-gray-300'
+                          }`}>
+                            <div className={`w-5 h-5 bg-white rounded-full shadow-lg transform transition-all duration-300 ease-in-out ${
+                              validatedProductIdea ? 'translate-x-[22px]' : 'translate-x-[3px]'
+                            } translate-y-[4px]`}></div>
+                          </div>
+                        </div>
+                        <div>
+                          <span className={`text-sm font-semibold transition-colors duration-200 ${
+                            validatedProductIdea ? 'text-blue-900' : 'text-gray-700'
+                          }`}>Add A Validated Product Idea</span>
+                          <span className="block text-xs text-gray-500">+$997 one-time</span>
+                        </div>
+                      </label>
+                    </div>
+                  </div>
+                )}
 
                 {/* Checkout Content */}
                 <div className="p-8">
@@ -685,7 +718,10 @@ const MainCheckoutPage: React.FC<MainCheckoutPageProps> = () => {
               <div className="p-4 border-b border-gray-200">
                 <div className="flex bg-gray-100 rounded-lg p-1 relative">
                   <button
-                    onClick={() => setPricingOption('subscription')}
+                    onClick={() => {
+                      setPricingOption('subscription');
+                      setValidatedProductIdea(false);
+                    }}
                     className={`flex-1 py-2.5 px-3 rounded-md font-semibold text-sm transition-all duration-200 ${
                       pricingOption === 'subscription'
                         ? 'bg-white text-gray-900 shadow-sm'
@@ -705,10 +741,51 @@ const MainCheckoutPage: React.FC<MainCheckoutPageProps> = () => {
                   >
                     <span className="absolute -top-2 right-1 bg-orange-500 text-white text-[10px] font-bold px-1.5 py-0.5 rounded-full">POPULAR</span>
                     Lifetime Access
-                    <span className="block text-xs font-normal mt-0.5">$497</span>
+                    <span className="block text-xs font-normal mt-0.5">{validatedProductIdea ? '$1,497' : '$497'}</span>
                   </button>
                 </div>
               </div>
+
+              {/* Validated Product Idea Toggle - Desktop */}
+              {pricingOption === 'lifetime' && (
+                <div className="p-4 border-b border-gray-200 bg-gradient-to-r from-blue-50 to-indigo-50">
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center space-x-3">
+                      <label className="flex items-center space-x-3 cursor-pointer">
+                        <div className="relative flex-shrink-0">
+                          <input
+                            type="checkbox"
+                            checked={validatedProductIdea}
+                            onChange={(e) => setValidatedProductIdea(e.target.checked)}
+                            className="sr-only"
+                          />
+                          <div className={`w-12 h-7 rounded-full transition-all duration-300 ease-in-out ${
+                            validatedProductIdea ? 'bg-blue-500 shadow-[0_0_8px_rgba(59,130,246,0.4)]' : 'bg-gray-300'
+                          }`}>
+                            <div className={`w-5 h-5 bg-white rounded-full shadow-lg transform transition-all duration-300 ease-in-out ${
+                              validatedProductIdea ? 'translate-x-[22px]' : 'translate-x-[3px]'
+                            } translate-y-[4px]`}></div>
+                          </div>
+                        </div>
+                        <div>
+                          <span className={`text-sm font-semibold transition-colors duration-200 ${
+                            validatedProductIdea ? 'text-blue-900' : 'text-gray-700'
+                          }`}>Add A Validated Product Idea</span>
+                          <span className="block text-xs text-gray-500">+$997 one-time</span>
+                        </div>
+                      </label>
+                      <div className="group relative">
+                        <HelpCircle className="w-4 h-4 text-gray-400 hover:text-blue-500 cursor-help transition-colors" />
+                        <div className="absolute bottom-full right-0 mb-2 w-64 p-3 bg-gray-900 border border-gray-700 rounded-lg shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-10">
+                          <p className="text-xs text-gray-200 leading-relaxed">
+                            <strong className="text-white">What is a Validated Product Idea?</strong> Travis and the team will take your interests and parameters (budget, timeline, etc...) and come up with a PDF presentation of 5-6 validated product ideas that we're confident are winners.
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              )}
 
               {/* Checkout Content */}
               <div className="p-8">
