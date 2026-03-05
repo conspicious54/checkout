@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Shield, CreditCard, Clock, CheckCircle, Star, ArrowLeft, Loader, Play, Users, BookOpen, Calendar, MessageCircle, Zap, Award } from 'lucide-react';
+import { Shield, CreditCard, Clock, CheckCircle, Star, ArrowLeft, Loader, Play, Users, BookOpen, MessageCircle, Zap, Award } from 'lucide-react';
 import { WhopCheckoutEmbed } from "@whop/react/checkout";
 
 interface CheckoutPageProps {
@@ -64,7 +64,7 @@ const CheckoutPage: React.FC<CheckoutPageProps> = () => {
             <div className="text-center lg:text-left">
               <div className="inline-flex items-baseline space-x-2 mb-4">
                 <span className="text-sm text-gray-600 font-medium">as low as</span>
-                <span className="text-5xl font-bold text-gray-900">$119</span>
+                <span className="text-5xl font-bold text-gray-900">$199</span>
                 <span className="text-xl font-semibold text-gray-700">/month</span>
               </div>
               <div className="flex items-center justify-center lg:justify-start space-x-4">
@@ -157,7 +157,7 @@ const CheckoutPage: React.FC<CheckoutPageProps> = () => {
                     
                     {/* Whop Checkout Integration */}
                     <WhopCheckoutEmbed 
-                      planId="plan_H1mVQKjoy1rTi"
+                      planId="plan_WALRqnodq9C1O"
                       theme="light"
                       hidePrice={true}
                       skipRedirect={false}
@@ -251,36 +251,12 @@ const CheckoutPage: React.FC<CheckoutPageProps> = () => {
 
                 <div className="bg-white/80 backdrop-blur-sm border border-gray-200 rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300">
                   <div className="flex items-start space-x-4">
-                    <div className="bg-green-100 p-3 rounded-xl">
-                      <Calendar className="w-6 h-6 text-green-600" />
-                    </div>
-                    <div>
-                      <h4 className="font-bold text-gray-900 mb-2">Continuous Weekly Q&A Calls</h4>
-                      <p className="text-gray-600 leading-relaxed">Ongoing support through live weekly sessions to answer your questions.</p>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="bg-white/80 backdrop-blur-sm border border-gray-200 rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300">
-                  <div className="flex items-start space-x-4">
                     <div className="bg-purple-100 p-3 rounded-xl">
                       <Users className="w-6 h-6 text-purple-600" />
                     </div>
                     <div>
                       <h4 className="font-bold text-gray-900 mb-2">Private Facebook Mastermind Membership</h4>
                       <p className="text-gray-600 leading-relaxed">Access to an exclusive community for networking and support.</p>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="bg-white/80 backdrop-blur-sm border border-gray-200 rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300">
-                  <div className="flex items-start space-x-4">
-                    <div className="bg-orange-100 p-3 rounded-xl">
-                      <CheckCircle className="w-6 h-6 text-orange-600" />
-                    </div>
-                    <div>
-                      <h4 className="font-bold text-gray-900 mb-2">2 Free 1 on 1 Coaching Sessions</h4>
-                      <p className="text-gray-600 leading-relaxed">Personalized coaching with Travis or a certified coach.</p>
                     </div>
                   </div>
                 </div>
@@ -355,7 +331,7 @@ const CheckoutPage: React.FC<CheckoutPageProps> = () => {
                   </div>
                   <div>
                     <p className="font-semibold text-blue-900">Live Support</p>
-                    <p className="text-sm text-blue-700">Weekly Q&A calls and 1-on-1 coaching sessions</p>
+                    <p className="text-sm text-blue-700">Private community, accountability groups, and 2000+ Q&A database</p>
                   </div>
                 </div>
                 <div className="flex items-start space-x-4">
@@ -430,7 +406,7 @@ const CheckoutPage: React.FC<CheckoutPageProps> = () => {
                   
                   {/* Whop Checkout Integration */}
                   <WhopCheckoutEmbed 
-                    planId="plan_H1mVQKjoy1rTi"
+                    planId="plan_WALRqnodq9C1O"
                     theme="light"
                     hidePrice={true}
                     skipRedirect={false}

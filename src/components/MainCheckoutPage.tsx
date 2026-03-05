@@ -101,11 +101,11 @@ const MainCheckoutPage: React.FC<MainCheckoutPageProps> = () => {
 
   // Update document title with current price
   useEffect(() => {
-    const price = pricingOption === 'subscription' 
-      ? '$299.99/mo' 
-      : validatedProductIdea 
-        ? '$1,997' 
-        : '$997';
+    const price = pricingOption === 'subscription'
+      ? '$199/mo'
+      : validatedProductIdea
+        ? '$1,494'
+        : '$497';
     document.title = `Passion Product Formula - ${price}`;
   }, [pricingOption, validatedProductIdea]);
 
@@ -151,11 +151,11 @@ const MainCheckoutPage: React.FC<MainCheckoutPageProps> = () => {
                   <div className="text-right">
                     <div className="inline-flex items-baseline space-x-1">
                       <span className="text-3xl font-bold text-white">
-                        {pricingOption === 'subscription' 
-                          ? '$299.99' 
-                          : validatedProductIdea 
-                            ? '$1,997' 
-                            : '$997'}
+                        {pricingOption === 'subscription'
+                          ? '$199'
+                          : validatedProductIdea
+                            ? '$1,494'
+                            : '$497'}
                       </span>
                       {pricingOption === 'subscription' && (
                         <span className="text-base font-semibold text-gray-300">/month</span>
@@ -166,7 +166,7 @@ const MainCheckoutPage: React.FC<MainCheckoutPageProps> = () => {
                         <>
                           One-time payment
                           {!validatedProductIdea && (
-                            <span className="block text-green-400 font-semibold mt-0.5">Save $2,600+ vs monthly</span>
+                            <span className="block text-green-400 font-semibold mt-0.5">Save $1,800+ vs monthly</span>
                           )}
                         </>
                       ) : (
@@ -218,15 +218,6 @@ const MainCheckoutPage: React.FC<MainCheckoutPageProps> = () => {
               {pricingOption === 'lifetime' && (
                 <div className="p-4 bg-gradient-to-r from-orange-600/20 to-yellow-600/20 border-t border-orange-500/30 space-y-3">
                   <div className="flex items-center space-x-3">
-                    <div className="bg-orange-500/20 p-2 rounded-lg">
-                      <CheckCircle className="w-5 h-5 text-orange-400" />
-                    </div>
-                    <div>
-                      <div className="text-sm font-bold text-orange-300">Bonus: 2 Free 1 on 1 Coaching Sessions</div>
-                      <div className="text-xs text-orange-200">Personalized coaching with Travis or a certified coach</div>
-                    </div>
-                  </div>
-                  <div className="flex items-center space-x-3 pt-2 border-t border-orange-500/30">
                     <div className="bg-orange-500/20 p-2 rounded-lg">
                       <Award className="w-5 h-5 text-orange-400" />
                     </div>
@@ -310,7 +301,7 @@ const MainCheckoutPage: React.FC<MainCheckoutPageProps> = () => {
                       }`}
                     >
                       Subscribe
-                      <span className="block text-xs font-normal mt-0.5">$299.99/mo</span>
+                      <span className="block text-xs font-normal mt-0.5">$199/mo</span>
                     </button>
                     <button
                       onClick={() => setPricingOption('lifetime')}
@@ -322,7 +313,7 @@ const MainCheckoutPage: React.FC<MainCheckoutPageProps> = () => {
                     >
                       <span className="absolute -top-2 right-1 bg-orange-500 text-white text-[10px] font-bold px-1.5 py-0.5 rounded-full">POPULAR</span>
                       Lifetime Access
-                      <span className="block text-xs font-normal mt-0.5">$997</span>
+                      <span className="block text-xs font-normal mt-0.5">$497</span>
                     </button>
                   </div>
                 </div>
@@ -346,9 +337,9 @@ const MainCheckoutPage: React.FC<MainCheckoutPageProps> = () => {
                     <WhopCheckoutEmbed 
                       key={pricingOption === 'lifetime' ? (validatedProductIdea ? 'lifetime-validated' : 'lifetime') : 'subscription'}
                       planId={
-                        pricingOption === 'lifetime' 
-                          ? (validatedProductIdea ? 'plan_nsKbk4iQTYNbw' : 'plan_KrBlX3ZaAFIGT')
-                          : 'plan_1l3co0swjIcbS'
+                        pricingOption === 'lifetime'
+                          ? (validatedProductIdea ? 'plan_uK5qoLTwG0ws9' : 'plan_vqBzSMMfIxkDn')
+                          : 'plan_WALRqnodq9C1O'
                       }
                       theme="light"
                       hidePrice={true}
@@ -429,15 +420,7 @@ const MainCheckoutPage: React.FC<MainCheckoutPageProps> = () => {
                       </li>
                       <li className="flex items-start space-x-2 text-gray-300">
                         <CheckCircle className="w-4 h-4 text-blue-400 mt-0.5 flex-shrink-0" />
-                        <span className="text-sm">Continuous Weekly Q&A Calls</span>
-                      </li>
-                      <li className="flex items-start space-x-2 text-gray-300">
-                        <CheckCircle className="w-4 h-4 text-blue-400 mt-0.5 flex-shrink-0" />
                         <span className="text-sm">2000+ Question Q&A Database</span>
-                      </li>
-                      <li className="flex items-start space-x-2 text-gray-300">
-                        <CheckCircle className="w-4 h-4 text-blue-400 mt-0.5 flex-shrink-0" />
-                        <span className="text-sm">2 Free 1 on 1 Coaching Sessions</span>
                       </li>
                     </ul>
                   </div>
@@ -599,7 +582,7 @@ const MainCheckoutPage: React.FC<MainCheckoutPageProps> = () => {
                   </div>
                   <div>
                     <p className="font-semibold text-white">Live Support</p>
-                    <p className="text-sm text-gray-300">Weekly Q&A calls and 1-on-1 coaching sessions</p>
+                    <p className="text-sm text-gray-300">Private community, accountability groups, and 2000+ Q&A database</p>
                   </div>
                 </div>
                 <div className="flex items-start space-x-4">
@@ -710,7 +693,7 @@ const MainCheckoutPage: React.FC<MainCheckoutPageProps> = () => {
                     }`}
                   >
                     Subscribe
-                    <span className="block text-xs font-normal mt-0.5">$299.99/mo</span>
+                    <span className="block text-xs font-normal mt-0.5">$199/mo</span>
                   </button>
                   <button
                     onClick={() => setPricingOption('lifetime')}
@@ -722,7 +705,7 @@ const MainCheckoutPage: React.FC<MainCheckoutPageProps> = () => {
                   >
                     <span className="absolute -top-2 right-1 bg-orange-500 text-white text-[10px] font-bold px-1.5 py-0.5 rounded-full">POPULAR</span>
                     Lifetime Access
-                    <span className="block text-xs font-normal mt-0.5">$997</span>
+                    <span className="block text-xs font-normal mt-0.5">$497</span>
                   </button>
                 </div>
               </div>
