@@ -371,8 +371,8 @@ const MainCheckoutPage: React.FC<MainCheckoutPageProps> = () => {
                       key={pricingOption === 'lifetime' ? (validatedProductIdea ? 'lifetime-validated' : 'lifetime') : 'subscription'}
                       planId={
                         pricingOption === 'lifetime'
-                          ? (validatedProductIdea ? 'plan_uK5qoLTwG0ws9' : 'plan_vqBzSMMfIxkDn')
-                          : 'plan_WALRqnodq9C1O'
+                          ? (validatedProductIdea ? 'plan_uK5qoLTwG0ws9' : 'plan_WALRqnodq9C1O')
+                          : 'plan_vqBzSMMfIxkDn'
                       }
                       theme="light"
                       hidePrice={true}
@@ -807,8 +807,8 @@ const MainCheckoutPage: React.FC<MainCheckoutPageProps> = () => {
                     key={pricingOption === 'lifetime' ? (validatedProductIdea ? 'lifetime-validated' : 'lifetime') : 'subscription'}
                     planId={
                       pricingOption === 'lifetime' 
-                        ? (validatedProductIdea ? 'plan_uK5qoLTwG0ws9' : 'plan_vqBzSMMfIxkDn')
-                        : 'plan_WALRqnodq9C1O'
+                        ? (validatedProductIdea ? 'plan_uK5qoLTwG0ws9' : 'plan_WALRqnodq9C1O')
+                        : 'plan_vqBzSMMfIxkDn'
                     }
                     theme="light"
                     hidePrice={true}
