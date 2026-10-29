@@ -1,5 +1,5 @@
-import React from 'react';
-import { CheckCircle, Mail, FileText, Users, Search, UserCheck, HelpCircle, ArrowRight, ExternalLink } from 'lucide-react';
+import React, { useEffect, useState } from 'react';
+import { CheckCircle, Circle, Mail, FileText, Users, Search, UserCheck, ArrowRight, ExternalLink, Shield, Award, PlayCircle, BookOpen, MessageCircle, Factory, Palette, Sparkles } from 'lucide-react';
 
 interface CompletedPurchasePageProps {
   // No props needed
@@ -7,228 +7,337 @@ interface CompletedPurchasePageProps {
 
 // The course and community live in Mighty Networks now
 const MIGHTY_NETWORKS_URL = 'https://passion-product-formula.mn.co/sign_up?auto_join=true&from=https%3A%2F%2Fpassion-product-formula.mn.co%2F%3Fautojoin%3D1&space_id=20448995';
+const MODULE_0_URL = 'https://passionproductcommunity.com/posts/the-passion-product-formula-course-introduction';
+const RESEARCH_CHALLENGE_URL = 'https://passionproductcommunity.com/spaces/23069463/content';
+const CHECKLIST_URL = 'https://drive.google.com/file/d/12_rxxIPbm_AGCsLGr6Xww8iuo3kPTohg/view';
+const QUESTIONNAIRE_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSfI6bvYn2_zcliC1zD__He5ZSJXasEfBCicBSVeNl-QNT7AsA/viewform?usp=sf_link&urp=gmail_link';
+
+const PROGRESS_KEY = 'ppf-onboarding-progress';
+
+const unlocked = [
+  { icon: BookOpen, title: '117 step-by-step video lessons', body: 'The full roadmap from idea to launch, so you always know the next move.' },
+  { icon: MessageCircle, title: '2,000+ question Q&A database', body: 'Almost any question you hit has already been asked and answered.' },
+  { icon: Users, title: 'The Passion Product Community', body: 'Students and coaches who give real feedback on your ideas, logos, and listings.' },
+  { icon: Factory, title: 'Our supplier and expert database', body: 'Hundreds of vetted manufacturers, designers, product sourcers, and more.' },
+  { icon: UserCheck, title: 'An accountability buddy', body: 'Someone on the same journey who keeps you moving when life gets busy.' },
+  { icon: Search, title: 'Bonus: Product Research Challenge', body: 'A guided sprint to find real product ideas in your first week.' },
+  { icon: Palette, title: 'Bonus: 40% off design services', body: 'From FBACreatives, for your logo, packaging, and listing images (lifetime members).' },
+];
+
+const studentStories = [
+  { name: 'Darryl', caption: 'His honest first six months on Amazon', videoId: 'qnfz99q85n' },
+  { name: 'Troy', caption: 'Built his business while in college', videoId: 'frer1czlo4' },
+  { name: 'Jeremy', caption: 'Funded his launch with Kickstarter', videoId: 'zzus1p2wdz' },
+];
+
+const loadProgress = (): Record<string, boolean> => {
+  try {
+    return JSON.parse(localStorage.getItem(PROGRESS_KEY) || '{}');
+  } catch {
+    return {};
+  }
+};
+
+interface StepProps {
+  id: string;
+  number: number;
+  icon: React.ReactNode;
+  title: string;
+  time: string;
+  done: boolean;
+  onToggle: (id: string) => void;
+  children: React.ReactNode;
+  isLast?: boolean;
+}
+
+const Step: React.FC<StepProps> = ({ id, number, icon, title, time, done, onToggle, children, isLast }) => (
+  <div className="relative flex space-x-4 sm:space-x-6">
+    <div className="flex flex-col items-center">
+      <div className={`w-10 h-10 rounded-full font-bold flex items-center justify-center shadow-md flex-shrink-0 transition-colors ${
+        done ? 'bg-green-600 text-white' : 'bg-white text-green-700 border-2 border-green-600'
+      }`}>
+        {done ? <CheckCircle className="w-5 h-5" /> : number}
+      </div>
+      {!isLast && <div className="w-0.5 flex-1 bg-green-200 my-2" />}
+    </div>
+    <div className={`flex-1 bg-white rounded-2xl shadow-lg border p-6 transition-colors ${
+      done ? 'border-green-300' : 'border-gray-200'
+    } ${isLast ? '' : 'mb-6'}`}>
+      <div className="flex items-start justify-between gap-3 mb-3">
+        <div className="flex items-center space-x-3">
+          <div className="bg-gray-100 p-2 rounded-lg flex-shrink-0">{icon}</div>
+          <h3 className={`text-xl font-bold ${done ? 'text-gray-500' : 'text-gray-900'}`}>{title}</h3>
+        </div>
+        <span className="text-xs font-semibold text-gray-500 bg-gray-100 px-2.5 py-1 rounded-full whitespace-nowrap">{time}</span>
+      </div>
+      {children}
+      <button
+        onClick={() => onToggle(id)}
+        className={`mt-5 inline-flex items-center space-x-2 text-sm font-semibold px-3 py-1.5 rounded-lg border transition-colors ${
+          done
+            ? 'bg-green-50 border-green-300 text-green-700 hover:bg-green-100'
+            : 'bg-white border-gray-300 text-gray-600 hover:border-green-500 hover:text-green-700'
+        }`}
+      >
+        {done ? <CheckCircle className="w-4 h-4" /> : <Circle className="w-4 h-4" />}
+        <span>{done ? 'Done' : 'Mark as done'}</span>
+      </button>
+    </div>
+  </div>
+);
+
+const LinkButton: React.FC<{ href: string; children: React.ReactNode; primary?: boolean }> = ({ href, children, primary }) => (
+  <a
+    href={href}
+    target="_blank"
+    rel="noopener noreferrer"
+    className={
+      primary
+        ? 'inline-flex items-center space-x-2 bg-green-600 hover:bg-green-700 text-white font-semibold px-5 py-3 rounded-lg transition-colors shadow-md'
+        : 'inline-flex items-center space-x-2 text-sm text-green-700 hover:text-green-900 font-semibold underline'
+    }
+  >
+    <span>{children}</span>
+    <ExternalLink className="w-4 h-4" />
+  </a>
+);
+
+const STEP_IDS = ['email', 'community', 'module0', 'questionnaire', 'challenge'];
 
 const CompletedPurchasePage: React.FC<CompletedPurchasePageProps> = () => {
+  const [progress, setProgress] = useState<Record<string, boolean>>(loadProgress);
+
+  useEffect(() => {
+    document.title = "You're in! | Passion Product Formula";
+  }, []);
+
+  const toggle = (id: string) => {
+    setProgress((prev) => {
+      const next = { ...prev, [id]: !prev[id] };
+      try {
+        localStorage.setItem(PROGRESS_KEY, JSON.stringify(next));
+      } catch {
+        // Progress just won't persist in private browsing
+      }
+      return next;
+    });
+  };
+
+  const doneCount = STEP_IDS.filter((id) => progress[id]).length;
+  const stepProps = (id: string) => ({ id, done: !!progress[id], onToggle: toggle });
+
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-blue-50">
-      {/* Header */}
-      <div className="bg-gradient-to-r from-green-600 to-emerald-600 text-white py-6 shadow-md">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-center space-x-3">
-            <CheckCircle className="w-8 h-8" />
-            <h1 className="text-3xl font-bold">Welcome to Passion Product Formula!</h1>
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-green-50">
+      {/* Hero */}
+      <div className="relative overflow-hidden bg-gradient-to-br from-green-600 via-emerald-600 to-teal-700 text-white">
+        <div className="absolute -top-24 -right-24 w-72 h-72 rounded-full bg-white/10" />
+        <div className="absolute -bottom-32 -left-20 w-80 h-80 rounded-full bg-white/5" />
+        <div className="relative max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-14 sm:py-20 text-center">
+          <div className="flex items-center justify-center w-20 h-20 mx-auto rounded-full bg-white/20 ring-8 ring-white/10 mb-6">
+            <CheckCircle className="w-12 h-12" />
           </div>
-          <p className="text-center mt-2 text-green-100">
-            Your purchase was successful. Here's everything you need to know to get started.
+          <div className="inline-flex items-center space-x-2 bg-white/15 rounded-full px-4 py-1.5 text-sm font-semibold mb-5">
+            <Sparkles className="w-4 h-4" />
+            <span>Payment confirmed</span>
+          </div>
+          <h1 className="text-4xl sm:text-5xl font-extrabold tracking-tight mb-4">You're in. Welcome to the Passion Product Formula!</h1>
+          <p className="text-lg sm:text-xl text-green-50 leading-relaxed max-w-2xl mx-auto">
+            Most people think about building a product business for years. You just did something about it.
+            Your spot is locked in and your receipt is on its way to your inbox.
           </p>
         </div>
       </div>
 
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        {/* Step 1: Email */}
-        <div className="bg-white rounded-2xl shadow-lg border border-gray-200 p-6 mb-6">
-          <div className="flex items-start space-x-4">
-            <div className="bg-blue-100 p-3 rounded-lg flex-shrink-0">
-              <Mail className="w-6 h-6 text-blue-600" />
-            </div>
-            <div className="flex-1">
-              <h2 className="text-2xl font-bold text-gray-900 mb-2">Step 1: Check Your Email</h2>
-              <p className="text-gray-700 leading-relaxed mb-3">
-                Look out for an email with the subject line <strong>"Welcome to the Course!"</strong> as well as an invitation to create your account.
-              </p>
-              <p className="text-gray-700 leading-relaxed mb-3">
-                <strong>Important:</strong> You need to find this email because that's where you will make your login for the course to access the video modules. This email contains your account setup instructions and login information.
-              </p>
-              <p className="text-gray-600 text-sm">
-                If you don't see the email, please check your spam/junk folder.
-              </p>
-            </div>
+      <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 -mt-8 pb-16 space-y-14">
+        {/* Start Here */}
+        <div className="relative bg-white rounded-2xl shadow-xl border-2 border-green-500 p-6 sm:p-8">
+          <div className="flex items-center space-x-2 text-green-700 font-bold uppercase text-sm tracking-wide mb-3">
+            <Mail className="w-5 h-5" />
+            <span>Do this first</span>
           </div>
+          <h2 className="text-2xl font-bold text-gray-900 mb-3">Check your email and create your login</h2>
+          <p className="text-gray-700 leading-relaxed mb-3">
+            Look for an email with the subject line <strong>"Welcome to the Course!"</strong> along with an invitation to create your account. That's where you set up the login you'll use to watch every module.
+          </p>
+          <p className="text-gray-600 text-sm">
+            Don't see it within a few minutes? Check your spam or promotions folder, then search your inbox for "Passion Product".
+          </p>
+          <button
+            onClick={() => toggle('email')}
+            className={`mt-5 inline-flex items-center space-x-2 text-sm font-semibold px-3 py-1.5 rounded-lg border transition-colors ${
+              progress.email
+                ? 'bg-green-50 border-green-300 text-green-700 hover:bg-green-100'
+                : 'bg-white border-gray-300 text-gray-600 hover:border-green-500 hover:text-green-700'
+            }`}
+          >
+            {progress.email ? <CheckCircle className="w-4 h-4" /> : <Circle className="w-4 h-4" />}
+            <span>{progress.email ? 'Login created' : "I've created my login"}</span>
+          </button>
         </div>
 
-        {/* Step 2: Initial Questionnaire */}
-        <div className="bg-white rounded-2xl shadow-lg border border-gray-200 p-6 mb-6">
-          <div className="flex items-start space-x-4">
-            <div className="bg-purple-100 p-3 rounded-lg flex-shrink-0">
-              <FileText className="w-6 h-6 text-purple-600" />
-            </div>
-            <div className="flex-1">
-              <h2 className="text-2xl font-bold text-gray-900 mb-2">Step 2: Fill Out the Initial Questionnaire</h2>
-              <p className="text-gray-700 leading-relaxed mb-3">
-                The first thing to do is fill out the initial questionnaire. This will be used so we can get to know you better, make sure we make every aspect of the course perfect for you, and it will be used down the line to help assign you an accountability partner.
-              </p>
-              <div className="bg-purple-50 border border-purple-200 rounded-lg p-4 mt-4">
-                <p className="text-sm text-purple-900 font-semibold mb-2">Get Your Checklist</p>
-                <p className="text-sm text-purple-800 mb-3">
-                  We created a step-by-step checklist. We recommend using this and going through step by step, finishing each task before you move on to the next. You'll need to make a copy of it to be able to edit it and properly use it.
-                </p>
-                <a 
-                  href="https://drive.google.com/file/d/12_rxxIPbm_AGCsLGr6Xww8iuo3kPTohg/view" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center space-x-2 text-sm text-purple-700 hover:text-purple-900 font-semibold underline"
-                >
-                  <span>Get Your Checklist</span>
-                  <ExternalLink className="w-4 h-4" />
-                </a>
-              </div>
-              <div className="mt-4">
-                <a 
-                  href="https://docs.google.com/forms/d/e/1FAIpQLSfI6bvYn2_zcliC1zD__He5ZSJXasEfBCicBSVeNl-QNT7AsA/viewform?usp=sf_link&urp=gmail_link" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center space-x-2 bg-purple-600 hover:bg-purple-700 text-white font-semibold px-6 py-3 rounded-lg transition-colors shadow-md"
-                >
-                  <FileText className="w-5 h-5" />
-                  <span>Fill Out Initial Questionnaire</span>
-                  <ExternalLink className="w-4 h-4" />
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Step 3: Join Communities */}
-        <div className="bg-white rounded-2xl shadow-lg border border-gray-200 p-6 mb-6">
-          <div className="flex items-start space-x-4">
-            <div className="bg-orange-100 p-3 rounded-lg flex-shrink-0">
-              <Users className="w-6 h-6 text-orange-600" />
-            </div>
-            <div className="flex-1">
-              <h2 className="text-2xl font-bold text-gray-900 mb-2">Step 3: Join The Passion Product Community</h2>
-              <p className="text-gray-700 leading-relaxed mb-3">
-                Make sure to join <strong>The Passion Product Community</strong> on Mighty Networks. This is where the course lives and a powerful resource where you can ask questions, share your progress, and get feedback from fellow learners.
-              </p>
-              <div className="bg-orange-50 border border-orange-200 rounded-lg p-4 mt-4">
-                <p className="text-sm text-orange-900 font-semibold mb-2">Why This Matters:</p>
-                <ul className="text-sm text-orange-800 space-y-1 list-disc list-inside mb-3">
-                  <li>Share your ideas, logos, websites, and get feedback</li>
-                  <li>Connect with students who specialize in areas like Kickstarter, Google Ads, Facebook</li>
-                  <li>Post updates at least once a month to maximize your results</li>
-                  <li>The more you put into the community, the more you'll get out of it</li>
-                </ul>
-                <div className="space-y-2">
-                  <a 
-                    href={MIGHTY_NETWORKS_URL} 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center space-x-2 text-sm text-orange-700 hover:text-orange-900 font-semibold underline"
-                  >
-                    <span>Join The Passion Product Community</span>
-                    <ExternalLink className="w-4 h-4" />
-                  </a>
+        {/* What You Unlocked */}
+        <div>
+          <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-2">Everything you just unlocked</h2>
+          <p className="text-gray-600 mb-6">This is all yours now. Here's what's waiting for you inside.</p>
+          <div className="grid sm:grid-cols-2 gap-4">
+            {unlocked.map(({ icon: Icon, title, body }, i) => (
+              <div key={title} className={`${i === unlocked.length - 1 && unlocked.length % 2 ? 'sm:col-span-2 ' : ''}flex items-start space-x-3 bg-white rounded-xl border border-gray-200 shadow-sm p-4 hover:shadow-md hover:border-green-300 transition-all`}>
+                <div className="bg-green-100 p-2 rounded-lg flex-shrink-0">
+                  <Icon className="w-5 h-5 text-green-700" />
+                </div>
+                <div>
+                  <p className="font-semibold text-gray-900">{title}</p>
+                  <p className="text-sm text-gray-600 leading-relaxed">{body}</p>
                 </div>
               </div>
-              <p className="text-gray-600 text-sm mt-3 italic">
-                Note: Travis gets a lot of messages, so the community is the best way to reach him. For private questions, email <a href="mailto:travis@passionproduct.com" className="text-blue-600 hover:text-blue-800 underline">travis@passionproduct.com</a>, but please understand emails are usually checked once a week.
-              </p>
-            </div>
+            ))}
           </div>
         </div>
 
-        {/* Step 4: Accountability Partners */}
-        <div className="bg-white rounded-2xl shadow-lg border border-gray-200 p-6 mb-6">
-          <div className="flex items-start space-x-4">
-            <div className="bg-indigo-100 p-3 rounded-lg flex-shrink-0">
-              <UserCheck className="w-6 h-6 text-indigo-600" />
-            </div>
-            <div className="flex-1">
-              <h2 className="text-2xl font-bold text-gray-900 mb-2">Step 4: Complete Module 0 for Your Accountability Buddy</h2>
-              <p className="text-gray-700 leading-relaxed mb-3">
-                We can assign another learner to help you achieve your goals and vice versa. It's good to have someone who is on the same journey as you. You can keep each other accountable.
-              </p>
-              <p className="text-gray-700 leading-relaxed mb-3">
-                <strong>Recommended:</strong> Go through Module 0 in the Mighty Networks community and at least complete your Outcome Purpose Action plan. After you do that, you'll fill out a form and we can assign you an accountability buddy!
-              </p>
-              <div className="mt-4">
-                <a 
-                  href="https://passionproductcommunity.com/posts/the-passion-product-formula-course-introduction" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center space-x-2 text-sm text-indigo-700 hover:text-indigo-900 font-semibold underline"
-                >
-                  <span>Go to Module 0 in Mighty Networks</span>
-                  <ExternalLink className="w-4 h-4" />
-                </a>
-              </div>
-            </div>
+        {/* Next Steps */}
+        <div>
+          <div className="flex flex-wrap items-end justify-between gap-3 mb-2">
+            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900">Your first week, step by step</h2>
+            <span className="text-sm font-semibold text-green-700">{doneCount} of {STEP_IDS.length} done</span>
           </div>
-        </div>
-
-        {/* Step 5: Product Research Challenge */}
-        <div className="bg-white rounded-2xl shadow-lg border border-gray-200 p-6 mb-6">
-          <div className="flex items-start space-x-4">
-            <div className="bg-pink-100 p-3 rounded-lg flex-shrink-0">
-              <Search className="w-6 h-6 text-pink-600" />
-            </div>
-            <div className="flex-1">
-              <h2 className="text-2xl font-bold text-gray-900 mb-2">Step 5: Take the Product Research Challenge</h2>
-              <p className="text-gray-700 leading-relaxed mb-4">
-                As a bonus, you get access to the Product Research Challenge inside the community. Work through it alongside the course to start finding product ideas right away.
-              </p>
-              <a 
-                href="https://passionproductcommunity.com/spaces/23069463/content" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="inline-flex items-center space-x-2 text-sm text-pink-700 hover:text-pink-900 font-semibold underline"
-              >
-                <span>Start the Product Research Challenge</span>
-                <ExternalLink className="w-4 h-4" />
-              </a>
-            </div>
+          <div className="bg-green-100 rounded-full h-2 overflow-hidden mb-3">
+            <div className="bg-green-600 h-full transition-all duration-500" style={{ width: `${(doneCount / STEP_IDS.length) * 100}%` }} />
           </div>
-        </div>
+          <p className="text-gray-600 mb-8">Follow these in order and tick them off as you go. Each one takes less time than you'd think.</p>
 
-        {/* Step 6: Getting In Touch */}
-        <div className="bg-white rounded-2xl shadow-lg border border-gray-200 p-6 mb-6">
-          <div className="flex items-start space-x-4">
-            <div className="bg-yellow-100 p-3 rounded-lg flex-shrink-0">
-              <HelpCircle className="w-6 h-6 text-yellow-600" />
-            </div>
-            <div className="flex-1">
-              <h2 className="text-2xl font-bold text-gray-900 mb-2">Step 6: Getting In Touch</h2>
-              <p className="text-gray-700 leading-relaxed mb-4">
-                Travis dedicates every Thursday to working on this course and answering questions. Here are the best ways to get in contact:
-              </p>
-              <div className="space-y-3">
-                <div className="flex items-start space-x-3">
-                  <div className="bg-green-100 p-2 rounded-lg flex-shrink-0">
-                    <ArrowRight className="w-4 h-4 text-green-600" />
-                  </div>
-                  <div>
-                    <p className="font-semibold text-gray-900">Best Way: Post in the Mighty Networks Community</p>
-                    <p className="text-sm text-gray-600">Get feedback from everyone in the course, not just Travis</p>
-                  </div>
-                </div>
-                <div className="flex items-start space-x-3">
-                  <div className="bg-blue-100 p-2 rounded-lg flex-shrink-0">
-                    <ArrowRight className="w-4 h-4 text-blue-600" />
-                  </div>
-                  <div>
-                    <p className="font-semibold text-gray-900">Second Option: Email <a href="mailto:travis@passionproduct.com" className="text-blue-600 hover:text-blue-800 underline">travis@passionproduct.com</a></p>
-                    <p className="text-sm text-gray-600">Please note: Emails are usually checked once a week on Thursdays</p>
-                  </div>
-                </div>
-              </div>
-              <p className="text-gray-600 text-sm mt-4 italic">
-                Please avoid sending Facebook messages or Instagram DMs as Travis is not as active on those and your message may get lost.
-              </p>
-            </div>
-          </div>
-        </div>
+          <Step {...stepProps('community')} number={1} icon={<Users className="w-5 h-5 text-orange-600" />} title="Join The Passion Product Community" time="2 min">
+            <p className="text-gray-700 leading-relaxed mb-3">
+              The course and the community both live on Mighty Networks. This is where you'll watch the lessons, ask questions, share your progress, and get feedback from students who are a few steps ahead of you.
+            </p>
+            <ul className="text-sm text-gray-700 space-y-1.5 mb-4">
+              <li className="flex items-start space-x-2"><CheckCircle className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" /><span>Share your ideas, logos, and websites and get real feedback</span></li>
+              <li className="flex items-start space-x-2"><CheckCircle className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" /><span>Connect with students who specialize in Kickstarter, Google Ads, Facebook ads, and more</span></li>
+              <li className="flex items-start space-x-2"><CheckCircle className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" /><span>The students who post at least once a month get the most out of the program</span></li>
+            </ul>
+            <LinkButton href={MIGHTY_NETWORKS_URL} primary>Join The Community</LinkButton>
+          </Step>
 
-        {/* Final Note */}
-        <div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-2xl shadow-lg border-2 border-blue-200 p-6">
-          <div className="text-center">
-            <h3 className="text-xl font-bold text-gray-900 mb-3">You're All Set!</h3>
+          <Step {...stepProps('module0')} number={2} icon={<UserCheck className="w-5 h-5 text-indigo-600" />} title="Watch Module 0" time="30 min">
+            <p className="text-gray-700 leading-relaxed mb-3">
+              Module 0 walks you through how the program works and has you build your Outcome Purpose Action plan. It's the foundation for everything that comes after, so don't skip it.
+            </p>
             <p className="text-gray-700 leading-relaxed mb-4">
-              Remember, this course is a work in progress. If something is unclear, doesn't work, or you come across any issues, please email Travis or post about it in the community and it will be fixed!
+              Once your plan is done, fill out the form at the end and we'll pair you with an accountability buddy who is on the same journey as you.
             </p>
-            <p className="text-gray-600 text-sm">
-              We really want this to be the best course it can be and help you succeed. Thank you and we're excited to get started with you!
+            <LinkButton href={MODULE_0_URL} primary>Go to Module 0</LinkButton>
+          </Step>
+
+          <Step {...stepProps('questionnaire')} number={3} icon={<FileText className="w-5 h-5 text-purple-600" />} title="Fill out the questionnaire and grab your checklist" time="10 min">
+            <p className="text-gray-700 leading-relaxed mb-3">
+              The questionnaire helps us get to know you and shape the program around your goals. The checklist is your step-by-step map: finish each task before moving to the next one.
             </p>
-            <p className="text-gray-900 font-semibold mt-4">— Travis</p>
+            <p className="text-gray-600 text-sm mb-4">Make a copy of the checklist so you can edit it.</p>
+            <div className="flex flex-wrap items-center gap-4">
+              <LinkButton href={QUESTIONNAIRE_URL} primary>Fill Out The Questionnaire</LinkButton>
+              <LinkButton href={CHECKLIST_URL}>Get Your Checklist</LinkButton>
+            </div>
+          </Step>
+
+          <Step {...stepProps('challenge')} number={4} icon={<Search className="w-5 h-5 text-pink-600" />} title="Start the Product Research Challenge" time="Bonus" isLast>
+            <p className="text-gray-700 leading-relaxed mb-4">
+              Your bonus Product Research Challenge is waiting inside the community. Work through it alongside the course and you'll start finding real product ideas in your first week.
+            </p>
+            <LinkButton href={RESEARCH_CHALLENGE_URL} primary>Start the Challenge</LinkButton>
+          </Step>
+        </div>
+
+        {/* Guarantees */}
+        <div>
+          <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-2">You're fully protected</h2>
+          <p className="text-gray-600 mb-6">Both guarantees apply to your purchase starting today.</p>
+          <div className="grid sm:grid-cols-2 gap-4">
+            <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-xl p-5 border-2 border-blue-300 shadow-md">
+              <div className="flex items-center space-x-2 mb-2">
+                <Shield className="w-5 h-5 text-blue-700" />
+                <h3 className="text-base font-black text-blue-900">7-Day Money-Back Guarantee</h3>
+              </div>
+              <p className="text-sm text-blue-900 leading-relaxed">
+                Dig in and try it risk-free. If it's not for you, get a full refund. No questions asked.
+              </p>
+            </div>
+            <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-xl p-5 border-2 border-orange-300 shadow-md">
+              <div className="flex items-center space-x-2 mb-2">
+                <Award className="w-5 h-5 text-orange-700" />
+                <h3 className="text-base font-black text-orange-900">$1,000 Profit Guarantee</h3>
+              </div>
+              <p className="text-sm text-orange-900 leading-relaxed">
+                Follow all of the steps in the program and if you don't make at least $1,000 selling on Amazon in your first year, we will pay you $1,000.
+              </p>
+            </div>
           </div>
+        </div>
+
+        {/* Student Stories */}
+        <div>
+          <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-2">Students who started right where you are</h2>
+          <p className="text-gray-600 mb-6">Every one of them was on this exact page once.</p>
+          <div className="grid sm:grid-cols-2 gap-6">
+            {studentStories.map((story, i) => (
+              <div key={story.videoId} className={`${i === 0 ? 'sm:col-span-2 ' : ''}bg-white rounded-2xl shadow-lg border border-gray-200 overflow-hidden`}>
+                <div className="relative aspect-video bg-black">
+                  <iframe
+                    src={`https://fast.wistia.com/embed/medias/${story.videoId}`}
+                    title={`${story.name}'s story`}
+                    className="w-full h-full"
+                    allow="autoplay; fullscreen"
+                    allowFullScreen
+                  ></iframe>
+                </div>
+                <div className="flex items-center space-x-2 p-4">
+                  <PlayCircle className="w-5 h-5 text-green-600 flex-shrink-0" />
+                  <p className="text-gray-900"><strong>{story.name}:</strong> {story.caption}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Getting In Touch */}
+        <div className="bg-white rounded-2xl shadow-lg border border-gray-200 p-6">
+          <h2 className="text-2xl font-bold text-gray-900 mb-2">Questions? You're not on your own</h2>
+          <p className="text-gray-700 leading-relaxed mb-4">
+            Travis dedicates every Thursday to working on this course and answering questions. Here's how to reach the team:
+          </p>
+          <div className="space-y-3">
+            <div className="flex items-start space-x-3">
+              <div className="bg-green-100 p-2 rounded-lg flex-shrink-0">
+                <ArrowRight className="w-4 h-4 text-green-600" />
+              </div>
+              <div>
+                <p className="font-semibold text-gray-900">Best way: Post in the community</p>
+                <p className="text-sm text-gray-600">You get answers from everyone in the program, not just Travis, and usually much faster</p>
+              </div>
+            </div>
+            <div className="flex items-start space-x-3">
+              <div className="bg-blue-100 p-2 rounded-lg flex-shrink-0">
+                <ArrowRight className="w-4 h-4 text-blue-600" />
+              </div>
+              <div>
+                <p className="font-semibold text-gray-900">Private questions: Email <a href="mailto:travis@passionproduct.com" className="text-blue-600 hover:text-blue-800 underline">travis@passionproduct.com</a></p>
+                <p className="text-sm text-gray-600">Emails are checked once a week on Thursdays</p>
+              </div>
+            </div>
+          </div>
+          <p className="text-gray-600 text-sm mt-4 italic">
+            Please avoid Facebook messages or Instagram DMs. Travis isn't as active there and your message may get lost.
+          </p>
+        </div>
+
+        {/* Note From Travis */}
+        <div className="bg-gradient-to-r from-green-50 to-emerald-50 rounded-2xl shadow-lg border-2 border-green-200 p-6 sm:p-8">
+          <h2 className="text-xl font-bold text-gray-900 mb-3">A quick note from Travis</h2>
+          <p className="text-gray-700 leading-relaxed mb-3">
+            I built this program around the exact process I used to build my own products, and I keep improving it based on what students tell me. If anything is unclear or doesn't work, post about it in the community or email me and we'll fix it.
+          </p>
+          <p className="text-gray-700 leading-relaxed">
+            The students who succeed aren't the ones with the most money or experience. They're the ones who show up, take the next step, and lean on the community. You've already taken the hardest step. I'm excited to see what you build.
+          </p>
+          <p className="text-gray-900 font-semibold mt-4">Travis</p>
         </div>
       </div>
     </div>
@@ -236,4 +345,3 @@ const CompletedPurchasePage: React.FC<CompletedPurchasePageProps> = () => {
 };
 
 export default CompletedPurchasePage;
-
