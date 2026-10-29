@@ -215,14 +215,16 @@ const MainCheckoutPage: React.FC<MainCheckoutPageProps> = () => {
               <h2 className="text-xl font-bold text-white mb-4">
                 Watch How This Program Works
               </h2>
-              <div className="relative aspect-video bg-black rounded-2xl overflow-hidden shadow-2xl">
-                <iframe
-                  src="https://fast.wistia.com/embed/medias/ftr8vyrhi4"
+              <div className="relative aspect-[9/16] w-full max-w-xs mx-auto bg-black rounded-2xl overflow-hidden shadow-2xl">
+                <video
+                  src="/checkout-video.mp4"
+                  poster="/checkout-video-poster.jpg"
                   title="Passion Product Formula Video"
-                  className="w-full h-full"
-                  allow="autoplay; fullscreen"
-                  allowFullScreen
-                ></iframe>
+                  className="w-full h-full object-cover"
+                  controls
+                  playsInline
+                  preload="metadata"
+                />
               </div>
             </div>
 
