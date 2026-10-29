@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Shield, Clock, CheckCircle, Star, Loader, Users, BookOpen, Calendar, MessageCircle, Award, Zap, TrendingUp, X, HelpCircle } from 'lucide-react';
-import { WhopCheckoutEmbed } from "@whop/react/checkout";
+import WhopElementsCheckout from './WhopElementsCheckout';
 
 interface MainCheckoutPageProps {
   // No props needed
@@ -28,6 +28,23 @@ const MainCheckoutPage: React.FC<MainCheckoutPageProps> = () => {
   const [spotsLeft, setSpotsLeft] = useState(getInitialSpots()); // Starting spots from URL or default
   const [currentTestimonial, setCurrentTestimonial] = useState(0);
   const [showPopup, setShowPopup] = useState(false);
+  const [isDesktop, setIsDesktop] = useState(() => window.matchMedia('(min-width: 1024px)').matches);
+
+  const LIFETIME_PLAN = 'plan_WALRqnodq9C1O';
+  const LIFETIME_WITH_IDEA_PLAN = 'plan_uK5qoLTwG0ws9';
+  const SUBSCRIPTION_PLAN = 'plan_vqBzSMMfIxkDn';
+  const bundled = pricingOption === 'lifetime' && validatedProductIdea;
+  const checkoutPlan = pricingOption === 'lifetime'
+    ? (bundled ? LIFETIME_WITH_IDEA_PLAN : LIFETIME_PLAN)
+    : SUBSCRIPTION_PLAN;
+
+  // Only one checkout is mounted, in whichever column layout is showing
+  useEffect(() => {
+    const mq = window.matchMedia('(min-width: 1024px)');
+    const onChange = () => setIsDesktop(mq.matches);
+    mq.addEventListener('change', onChange);
+    return () => mq.removeEventListener('change', onChange);
+  }, []);
 
   // Social proof testimonials
   const testimonials = [
@@ -177,45 +194,6 @@ const MainCheckoutPage: React.FC<MainCheckoutPageProps> = () => {
                 </div>
               </div>
 
-              {/* Validated Product Idea Toggle - Only for Lifetime */}
-              {pricingOption === 'lifetime' && (
-                <div className="p-4 border-t border-gray-700">
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center space-x-3">
-                      <label className="flex items-center space-x-3 cursor-pointer group">
-                        <div className="relative flex-shrink-0">
-                          <input
-                            type="checkbox"
-                            checked={validatedProductIdea}
-                            onChange={(e) => setValidatedProductIdea(e.target.checked)}
-                            className="sr-only"
-                          />
-                          <div className={`w-12 h-7 rounded-full transition-all duration-300 ease-in-out ${
-                            validatedProductIdea ? 'bg-blue-500 shadow-[0_0_8px_rgba(59,130,246,0.5)]' : 'bg-gray-600'
-                          }`}>
-                            <div className={`w-5 h-5 bg-white rounded-full shadow-lg transform transition-all duration-300 ease-in-out ${
-                              validatedProductIdea ? 'translate-x-[22px]' : 'translate-x-[3px]'
-                            } translate-y-[4px]`}></div>
-                          </div>
-                        </div>
-                        <span className={`text-sm transition-colors duration-200 ${
-                          validatedProductIdea ? 'text-white font-semibold' : 'text-gray-300'
-                        }`}>Add A Validated Product Idea For $997</span>
-                      </label>
-                      <div className="group/tooltip relative">
-                        <HelpCircle className="w-4 h-4 text-gray-400 hover:text-gray-300 cursor-help transition-colors" />
-                        <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 w-64 p-3 bg-gray-800 border border-gray-700 rounded-lg shadow-xl opacity-0 invisible group-hover/tooltip:opacity-100 group-hover/tooltip:visible transition-all duration-200 z-10">
-                          <p className="text-xs text-gray-200 leading-relaxed">
-                            <strong className="text-white">What is a Validated Product Idea?</strong> Travis and the team will take your interests and parameters (budget, timeline, etc...) and come up with a PDF presentation of 5-6 validated product ideas that we're confident are winners.
-                          </p>
-                          <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-full w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent border-t-gray-800"></div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              )}
-              
               {/* Bonus Items for Lifetime */}
               {pricingOption === 'lifetime' && (
                 <div className="p-4 bg-gradient-to-r from-orange-600/20 to-yellow-600/20 border-t border-orange-500/30 space-y-3">
@@ -354,32 +332,11 @@ const MainCheckoutPage: React.FC<MainCheckoutPageProps> = () => {
                 {/* Checkout Content */}
                 <div className="p-8">
                   <div className="min-h-[500px]">
-                    {/* Custom CSS to override Whop checkout pricing */}
-                    <style>
-                      {`
-                        /* Override Whop checkout pricing display */
-                        [data-whop-checkout] [class*="price"], 
-                        [data-whop-checkout] [class*="total"],
-                        [data-whop-checkout] [class*="amount"] {
-                          display: none !important;
-                        }
-                      `}
-                    </style>
-                    
                     {/* Whop Checkout Integration */}
-                    <WhopCheckoutEmbed 
-                      key={pricingOption === 'lifetime' ? (validatedProductIdea ? 'lifetime-validated' : 'lifetime') : 'subscription'}
-                      planId={
-                        pricingOption === 'lifetime'
-                          ? (validatedProductIdea ? 'plan_uK5qoLTwG0ws9' : 'plan_WALRqnodq9C1O')
-                          : 'plan_vqBzSMMfIxkDn'
-                      }
-                      theme="light"
-                      hidePrice={true}
-                      skipRedirect={false}
-                      onComplete={(planId, receiptId) => {
-                        console.log('Checkout completed:', { planId, receiptId });
-                      }}
+                    {!isDesktop && (
+                    <WhopElementsCheckout
+                      planId={checkoutPlan}
+                      upgradedFrom={bundled ? LIFETIME_PLAN : undefined}
                       fallback={
                         <div className="flex items-center justify-center h-96 bg-gray-50 rounded-2xl border-2 border-dashed border-gray-300">
                           <div className="text-center">
@@ -390,6 +347,7 @@ const MainCheckoutPage: React.FC<MainCheckoutPageProps> = () => {
                         </div>
                       }
                     />
+                    )}
                   </div>
                 </div>
               </div>
@@ -790,32 +748,11 @@ const MainCheckoutPage: React.FC<MainCheckoutPageProps> = () => {
               {/* Checkout Content */}
               <div className="p-8">
                 <div className="min-h-[500px]">
-                  {/* Custom CSS to override Whop checkout pricing */}
-                  <style>
-                    {`
-                      /* Override Whop checkout pricing display */
-                      [data-whop-checkout] [class*="price"], 
-                      [data-whop-checkout] [class*="total"],
-                      [data-whop-checkout] [class*="amount"] {
-                        display: none !important;
-                      }
-                    `}
-                  </style>
-                  
                   {/* Whop Checkout Integration */}
-                  <WhopCheckoutEmbed 
-                    key={pricingOption === 'lifetime' ? (validatedProductIdea ? 'lifetime-validated' : 'lifetime') : 'subscription'}
-                    planId={
-                      pricingOption === 'lifetime' 
-                        ? (validatedProductIdea ? 'plan_uK5qoLTwG0ws9' : 'plan_WALRqnodq9C1O')
-                        : 'plan_vqBzSMMfIxkDn'
-                    }
-                    theme="light"
-                    hidePrice={true}
-                    skipRedirect={false}
-                    onComplete={(planId, receiptId) => {
-                      console.log('Checkout completed:', { planId, receiptId });
-                    }}
+                  {isDesktop && (
+                  <WhopElementsCheckout
+                    planId={checkoutPlan}
+                    upgradedFrom={bundled ? LIFETIME_PLAN : undefined}
                     fallback={
                       <div className="flex items-center justify-center h-96 bg-gray-50 rounded-2xl border-2 border-dashed border-gray-300">
                         <div className="text-center">
@@ -826,6 +763,7 @@ const MainCheckoutPage: React.FC<MainCheckoutPageProps> = () => {
                       </div>
                     }
                   />
+                  )}
                 </div>
               </div>
             </div>

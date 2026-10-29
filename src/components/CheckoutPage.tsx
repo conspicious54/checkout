@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Shield, CreditCard, Clock, CheckCircle, Star, ArrowLeft, Loader, Play, Users, BookOpen, MessageCircle, Zap, Award } from 'lucide-react';
-import { WhopCheckoutEmbed } from "@whop/react/checkout";
+import WhopElementsCheckout from './WhopElementsCheckout';
 
 interface CheckoutPageProps {
   // No props needed since this is now the main page
@@ -143,27 +143,9 @@ const CheckoutPage: React.FC<CheckoutPageProps> = () => {
                 {/* Checkout Content */}
                 <div className="p-8">
                   <div className="min-h-[500px]">
-                    {/* Custom CSS to override Whop checkout pricing */}
-                    <style>
-                      {`
-                        /* Override Whop checkout pricing display */
-                        [data-whop-checkout] [class*="price"], 
-                        [data-whop-checkout] [class*="total"],
-                        [data-whop-checkout] [class*="amount"] {
-                          display: none !important;
-                        }
-                      `}
-                    </style>
-                    
                     {/* Whop Checkout Integration */}
-                    <WhopCheckoutEmbed 
+                    <WhopElementsCheckout
                       planId="plan_WALRqnodq9C1O"
-                      theme="light"
-                      hidePrice={true}
-                      skipRedirect={false}
-                      onComplete={(planId, receiptId) => {
-                        console.log('Checkout completed:', { planId, receiptId });
-                      }}
                       fallback={
                         <div className="flex items-center justify-center h-96 bg-gray-50 rounded-2xl border-2 border-dashed border-gray-300">
                           <div className="text-center">
@@ -392,27 +374,9 @@ const CheckoutPage: React.FC<CheckoutPageProps> = () => {
               {/* Checkout Content */}
               <div className="p-8">
                 <div className="min-h-[500px]">
-                  {/* Custom CSS to override Whop checkout pricing */}
-                  <style>
-                    {`
-                      /* Override Whop checkout pricing display */
-                      [data-whop-checkout] [class*="price"], 
-                      [data-whop-checkout] [class*="total"],
-                      [data-whop-checkout] [class*="amount"] {
-                        display: none !important;
-                      }
-                    `}
-                  </style>
-                  
                   {/* Whop Checkout Integration */}
-                  <WhopCheckoutEmbed 
+                  <WhopElementsCheckout
                     planId="plan_WALRqnodq9C1O"
-                    theme="light"
-                    hidePrice={true}
-                    skipRedirect={false}
-                    onComplete={(planId, receiptId) => {
-                      console.log('Checkout completed:', { planId, receiptId });
-                    }}
                     fallback={
                       <div className="flex items-center justify-center h-96 bg-gray-50 rounded-2xl border-2 border-dashed border-gray-300">
                         <div className="text-center">
