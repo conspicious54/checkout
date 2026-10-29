@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { CheckCircle, Circle, Mail, FileText, Users, Search, UserCheck, ArrowRight, ExternalLink, Shield, Award, PlayCircle, BookOpen, MessageCircle, Factory, Palette, Sparkles } from 'lucide-react';
+import { CheckCircle, Circle, Mail, FileText, Users, Search, UserCheck, ArrowRight, ExternalLink, Award, PlayCircle, BookOpen, MessageCircle, Factory, Palette, Sparkles, Video, Infinity as InfinityIcon, Gift } from 'lucide-react';
 
 interface CompletedPurchasePageProps {
   // No props needed
@@ -10,18 +10,19 @@ const MIGHTY_NETWORKS_URL = 'https://passion-product-formula.mn.co/sign_up?auto_
 const MODULE_0_URL = 'https://passionproductcommunity.com/posts/the-passion-product-formula-course-introduction';
 const RESEARCH_CHALLENGE_URL = 'https://passionproductcommunity.com/spaces/23069463/content';
 const CHECKLIST_URL = 'https://drive.google.com/file/d/12_rxxIPbm_AGCsLGr6Xww8iuo3kPTohg/view';
+const WEEKLY_QA_URL = 'https://passionproductcommunity.com/spaces/20465768/feed';
 const QUESTIONNAIRE_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSfI6bvYn2_zcliC1zD__He5ZSJXasEfBCicBSVeNl-QNT7AsA/viewform?usp=sf_link&urp=gmail_link';
 
 const PROGRESS_KEY = 'ppf-onboarding-progress';
 
 const unlocked = [
-  { icon: BookOpen, title: '117 step-by-step video lessons', body: 'The full roadmap from idea to launch, so you always know the next move.' },
-  { icon: MessageCircle, title: '2,000+ question Q&A database', body: 'Almost any question you hit has already been asked and answered.' },
-  { icon: Users, title: 'The Passion Product Community', body: 'Students and coaches who give real feedback on your ideas, logos, and listings.' },
-  { icon: Factory, title: 'Our supplier and expert database', body: 'Hundreds of vetted manufacturers, designers, product sourcers, and more.' },
-  { icon: UserCheck, title: 'An accountability buddy', body: 'Someone on the same journey who keeps you moving when life gets busy.' },
-  { icon: Search, title: 'Bonus: Product Research Challenge', body: 'A guided sprint to find real product ideas in your first week.' },
-  { icon: Palette, title: 'Bonus: 40% off design services', body: 'From FBACreatives, for your logo, packaging, and listing images (lifetime members).' },
+  { icon: BookOpen, tag: 'Core program', title: '117 step-by-step video lessons', body: 'The complete roadmap from first idea to a profitable launch. You always know exactly what to do next.' },
+  { icon: MessageCircle, tag: 'Core program', title: '2,000+ question Q&A database', body: 'Years of real student questions, already answered. Most problems you hit have been solved before.' },
+  { icon: Users, tag: 'Core program', title: 'The Passion Product Community', body: 'Thousands of sellers and coaches giving real feedback on your ideas, logos, and listings.' },
+  { icon: Factory, tag: 'Core program', title: 'Supplier and expert database', body: 'Hundreds of vetted manufacturers, designers, and product sourcers, so you skip the guesswork.' },
+  { icon: UserCheck, tag: 'Core program', title: 'Your accountability buddy', body: 'A partner on the same journey who keeps you moving when life gets busy.' },
+  { icon: Search, tag: 'Bonus', title: 'Product Research Challenge', body: 'A guided sprint to find real, validated product ideas in your very first week.' },
+  { icon: Palette, tag: 'Bonus', title: '40% off FBACreatives design', body: 'Professional logos, packaging, and listing images at a fraction of the price (lifetime members).' },
 ];
 
 const studentStories = [
@@ -102,7 +103,7 @@ const LinkButton: React.FC<{ href: string; children: React.ReactNode; primary?: 
   </a>
 );
 
-const STEP_IDS = ['email', 'community', 'module0', 'questionnaire', 'challenge'];
+const STEP_IDS = ['email', 'community', 'module0', 'questionnaire', 'challenge', 'qacall'];
 
 const CompletedPurchasePage: React.FC<CompletedPurchasePageProps> = () => {
   const [progress, setProgress] = useState<Record<string, boolean>>(loadProgress);
@@ -176,21 +177,79 @@ const CompletedPurchasePage: React.FC<CompletedPurchasePageProps> = () => {
         </div>
 
         {/* What You Unlocked */}
-        <div>
-          <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-2">Everything you just unlocked</h2>
-          <p className="text-gray-600 mb-6">This is all yours now. Here's what's waiting for you inside.</p>
-          <div className="grid sm:grid-cols-2 gap-4">
-            {unlocked.map(({ icon: Icon, title, body }, i) => (
-              <div key={title} className={`${i === unlocked.length - 1 && unlocked.length % 2 ? 'sm:col-span-2 ' : ''}flex items-start space-x-3 bg-white rounded-xl border border-gray-200 shadow-sm p-4 hover:shadow-md hover:border-green-300 transition-all`}>
-                <div className="bg-green-100 p-2 rounded-lg flex-shrink-0">
-                  <Icon className="w-5 h-5 text-green-700" />
-                </div>
-                <div>
-                  <p className="font-semibold text-gray-900">{title}</p>
-                  <p className="text-sm text-gray-600 leading-relaxed">{body}</p>
+        <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-gray-900 via-gray-900 to-emerald-950 p-6 sm:p-10 shadow-2xl">
+          <div className="absolute -top-32 -right-32 w-80 h-80 rounded-full bg-emerald-500/10 blur-3xl" />
+          <div className="absolute -bottom-32 -left-32 w-80 h-80 rounded-full bg-amber-400/10 blur-3xl" />
+          <div className="relative">
+            <div className="inline-flex items-center space-x-2 bg-emerald-400/10 border border-emerald-400/30 text-emerald-300 rounded-full px-3 py-1 text-xs font-bold uppercase tracking-wider mb-4">
+              <Gift className="w-3.5 h-3.5" />
+              <span>Unlocked today</span>
+            </div>
+            <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight mb-3">Everything you just unlocked</h2>
+            <p className="text-gray-300 text-lg mb-8">This is all yours now. Every piece was built to get you from idea to your first sales as fast as possible.</p>
+
+            {/* Featured: Weekly Q&A */}
+            <a
+              href={WEEKLY_QA_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group block rounded-2xl p-[2px] bg-gradient-to-r from-amber-300 via-yellow-400 to-amber-500 shadow-[0_0_40px_rgba(251,191,36,0.25)] mb-6"
+            >
+              <div className="rounded-[14px] bg-gradient-to-br from-gray-900 to-gray-800 p-6 sm:p-7">
+                <div className="flex flex-col sm:flex-row sm:items-center gap-5">
+                  <div className="flex-shrink-0 w-16 h-16 rounded-2xl bg-gradient-to-br from-amber-300 to-amber-500 flex items-center justify-center shadow-lg">
+                    <Video className="w-8 h-8 text-gray-900" />
+                  </div>
+                  <div className="flex-1">
+                    <div className="flex flex-wrap items-center gap-2 mb-2">
+                      <span className="inline-flex items-center space-x-1 bg-amber-400 text-gray-900 rounded-full px-2.5 py-0.5 text-xs font-black uppercase tracking-wide">
+                        <InfinityIcon className="w-3.5 h-3.5" />
+                        <span>Lifetime access</span>
+                      </span>
+                      <span className="text-xs font-semibold text-amber-200/80 uppercase tracking-wide">Every week</span>
+                    </div>
+                    <h3 className="text-2xl font-extrabold text-white mb-1">Weekly Live Q&A Calls</h3>
+                    <p className="text-gray-300 leading-relaxed">
+                      Bring any question and get it answered live, every single week, for as long as you're building. Hear what's working right now and get unstuck in minutes instead of weeks.
+                    </p>
+                  </div>
+                  <div className="flex-shrink-0 inline-flex items-center space-x-1.5 text-amber-300 font-semibold group-hover:text-amber-200 transition-colors">
+                    <span>See the schedule</span>
+                    <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                  </div>
                 </div>
               </div>
-            ))}
+            </a>
+
+            <div className="grid sm:grid-cols-2 gap-4">
+              {unlocked.map(({ icon: Icon, tag, title, body }, i) => {
+                const bonus = tag === 'Bonus';
+                return (
+                  <div
+                    key={title}
+                    className={`${i === unlocked.length - 1 && unlocked.length % 2 ? 'sm:col-span-2 ' : ''}group relative rounded-2xl bg-white/[0.04] border border-white/10 p-5 hover:bg-white/[0.07] hover:border-emerald-400/40 hover:-translate-y-0.5 transition-all duration-200`}
+                  >
+                    <div className="flex items-start space-x-4">
+                      <div className={`flex-shrink-0 w-12 h-12 rounded-xl flex items-center justify-center shadow-lg ${
+                        bonus ? 'bg-gradient-to-br from-amber-300 to-orange-500' : 'bg-gradient-to-br from-emerald-400 to-green-600'
+                      }`}>
+                        <Icon className="w-6 h-6 text-white" />
+                      </div>
+                      <div>
+                        <span className={`text-[11px] font-bold uppercase tracking-wider ${bonus ? 'text-amber-300' : 'text-emerald-300'}`}>{tag}</span>
+                        <p className="font-bold text-white text-lg leading-snug mb-1">{title}</p>
+                        <p className="text-sm text-gray-400 leading-relaxed">{body}</p>
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+
+            <div className="mt-8 flex items-center justify-center space-x-2 text-emerald-300 text-sm font-semibold">
+              <CheckCircle className="w-4 h-4" />
+              <span>All of it is active on your account right now</span>
+            </div>
           </div>
         </div>
 
@@ -238,35 +297,32 @@ const CompletedPurchasePage: React.FC<CompletedPurchasePageProps> = () => {
             </div>
           </Step>
 
-          <Step {...stepProps('challenge')} number={4} icon={<Search className="w-5 h-5 text-pink-600" />} title="Start the Product Research Challenge" time="Bonus" isLast>
+          <Step {...stepProps('challenge')} number={4} icon={<Search className="w-5 h-5 text-pink-600" />} title="Start the Product Research Challenge" time="Bonus">
             <p className="text-gray-700 leading-relaxed mb-4">
               Your bonus Product Research Challenge is waiting inside the community. Work through it alongside the course and you'll start finding real product ideas in your first week.
             </p>
             <LinkButton href={RESEARCH_CHALLENGE_URL} primary>Start the Challenge</LinkButton>
           </Step>
+
+          <Step {...stepProps('qacall')} number={5} icon={<Video className="w-5 h-5 text-amber-600" />} title="Join your first weekly Q&A call" time="Weekly" isLast>
+            <p className="text-gray-700 leading-relaxed mb-4">
+              You have lifetime access to the weekly live Q&A calls. Check the schedule, add the next call to your calendar, and bring your questions. The students who show up regularly move the fastest.
+            </p>
+            <LinkButton href={WEEKLY_QA_URL} primary>See The Call Schedule</LinkButton>
+          </Step>
         </div>
 
-        {/* Guarantees */}
-        <div>
-          <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-2">You're fully protected</h2>
-          <p className="text-gray-600 mb-6">Both guarantees apply to your purchase starting today.</p>
-          <div className="grid sm:grid-cols-2 gap-4">
-            <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-xl p-5 border-2 border-blue-300 shadow-md">
-              <div className="flex items-center space-x-2 mb-2">
-                <Shield className="w-5 h-5 text-blue-700" />
-                <h3 className="text-base font-black text-blue-900">7-Day Money-Back Guarantee</h3>
-              </div>
-              <p className="text-sm text-blue-900 leading-relaxed">
-                Dig in and try it risk-free. If it's not for you, get a full refund. No questions asked.
-              </p>
+        {/* Profit Guarantee */}
+        <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-amber-50 via-orange-50 to-amber-100 border-2 border-amber-300 p-6 sm:p-8 shadow-lg">
+          <div className="flex flex-col sm:flex-row sm:items-center gap-5">
+            <div className="flex-shrink-0 w-20 h-20 rounded-full bg-gradient-to-br from-amber-400 to-orange-500 flex items-center justify-center shadow-lg ring-8 ring-amber-200/60">
+              <Award className="w-10 h-10 text-white" />
             </div>
-            <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-xl p-5 border-2 border-orange-300 shadow-md">
-              <div className="flex items-center space-x-2 mb-2">
-                <Award className="w-5 h-5 text-orange-700" />
-                <h3 className="text-base font-black text-orange-900">$1,000 Profit Guarantee</h3>
-              </div>
-              <p className="text-sm text-orange-900 leading-relaxed">
-                Follow all of the steps in the program and if you don't make at least $1,000 selling on Amazon in your first year, we will pay you $1,000.
+            <div>
+              <p className="text-xs font-bold uppercase tracking-wider text-amber-700 mb-1">Your purchase is backed by our</p>
+              <h2 className="text-2xl sm:text-3xl font-extrabold text-gray-900 mb-2">$1,000 Profit Guarantee</h2>
+              <p className="text-gray-800 leading-relaxed">
+                Follow all of the steps in the program and if you don't make at least $1,000 selling on Amazon in your first year, we will pay you $1,000. We only win when you do.
               </p>
             </div>
           </div>
