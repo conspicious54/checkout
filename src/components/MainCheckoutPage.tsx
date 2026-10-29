@@ -262,7 +262,7 @@ const MainCheckoutPage: React.FC<MainCheckoutPageProps> = () => {
                   </p>
                   <div className="flex items-center space-x-2 text-xs text-gray-500">
                     <Users className="w-3.5 h-3.5 text-blue-500" />
-                    <span>Join 500+ students • Instant access</span>
+                    <span>Join 4,362+ students • Instant access</span>
                   </div>
                 </div>
 
@@ -564,7 +564,7 @@ const MainCheckoutPage: React.FC<MainCheckoutPageProps> = () => {
                   </div>
                   <div>
                     <p className="font-semibold text-white">Proven System</p>
-                    <p className="text-sm text-gray-300">Travis's 8-year proven system that has helped hundreds of students</p>
+                    <p className="text-sm text-gray-300">Travis's 13-year proven system that has helped thousands of students</p>
                   </div>
                 </div>
                 <div className="flex items-start space-x-4">
@@ -599,7 +599,7 @@ const MainCheckoutPage: React.FC<MainCheckoutPageProps> = () => {
               
               <div className="flex flex-col sm:flex-row items-center justify-between space-y-4 sm:space-y-0">
                 <div className="flex items-center space-x-4 text-sm text-gray-400">
-                  <span>© 2025 Passion Product Formula</span>
+                  <span>© 2026 Passion Product Formula</span>
                   <span>•</span>
                   <a 
                     href="https://www.passionproductformula.com/privacy-policy" 
@@ -668,7 +668,7 @@ const MainCheckoutPage: React.FC<MainCheckoutPageProps> = () => {
                 </p>
                 <div className="flex items-center space-x-2 text-xs text-gray-500">
                   <Users className="w-3.5 h-3.5 text-blue-500" />
-                  <span>Join 500+ students • Instant access</span>
+                  <span>Join 4,362+ students • Instant access</span>
                 </div>
               </div>
 

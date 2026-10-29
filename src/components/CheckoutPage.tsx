@@ -304,7 +304,7 @@ const CheckoutPage: React.FC<CheckoutPageProps> = () => {
                   </div>
                   <div>
                     <p className="font-semibold text-blue-900">Proven System</p>
-                    <p className="text-sm text-blue-700">Travis's 8-year proven system that has helped hundreds of students</p>
+                    <p className="text-sm text-blue-700">Travis's 13-year proven system that has helped thousands of students</p>
                   </div>
                 </div>
                 <div className="flex items-start space-x-4">
@@ -506,7 +506,7 @@ const CheckoutPage: React.FC<CheckoutPageProps> = () => {
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
           <div className="flex flex-col sm:flex-row items-center justify-between space-y-4 sm:space-y-0">
             <div className="flex items-center space-x-4 text-sm text-gray-600">
-              <span>© 2025 Passion Product Formula</span>
+              <span>© 2026 Passion Product Formula</span>
               <span>•</span>
               <a href="#" className="hover:text-gray-900 transition-colors">Privacy Policy</a>
               <span>•</span>
